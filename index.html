@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreBot • Dashboard</title>
+<title>CoreBot</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -20,7 +20,7 @@ font-family:'Poppins',sans-serif;
 body{
 background:#050816;
 color:white;
-overflow:hidden;
+overflow-x:hidden;
 }
 
 /* BACKGROUND */
@@ -30,57 +30,44 @@ inset:0;
 background:
 radial-gradient(circle at 20% 20%,#5865F2 0%,transparent 40%),
 radial-gradient(circle at 80% 80%,#7c3aed 0%,transparent 40%),
-radial-gradient(circle at center,#00c2ff 0%,transparent 60%),
 #050816;
 z-index:-2;
 }
 
-/* GLOW */
-.glow{
-position:absolute;
-filter:blur(220px);
-opacity:0.25;
-border-radius:50%;
-}
-
-.g1{width:500px;height:500px;background:#5865F2;top:-200px;left:-200px;}
-.g2{width:500px;height:500px;background:#7c3aed;bottom:-200px;right:-200px;}
-
-/* CENTER */
+/* CONTAINER */
 .container{
-height:100vh;
+min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
+padding:20px;
 }
 
 /* CARD */
 .card{
-width:900px;
-padding:80px 60px;
-border-radius:30px;
+width:100%;
+max-width:900px;
+padding:40px 25px;
+border-radius:25px;
 background:rgba(255,255,255,0.06);
-backdrop-filter:blur(30px);
+backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,0.12);
-box-shadow:0 50px 140px rgba(0,0,0,0.7);
+box-shadow:0 30px 100px rgba(0,0,0,0.6);
 text-align:center;
-transform:perspective(1000px) rotateX(5deg);
-animation:float 6s ease-in-out infinite;
-position:relative;
-overflow:hidden;
+animation:float 5s ease-in-out infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0) perspective(1000px) rotateX(5deg);}
-50%{transform:translateY(-12px) perspective(1000px) rotateX(5deg);}
-100%{transform:translateY(0) perspective(1000px) rotateX(5deg);}
+0%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
+100%{transform:translateY(0);}
 }
 
 /* TITLE */
 h1{
-font-size:85px;
+font-size:50px;
 font-weight:900;
-background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
+background:linear-gradient(90deg,#5865F2,#7c3aed);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
@@ -88,38 +75,36 @@ background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
 /* TEXT */
 p{
 margin-top:10px;
-font-size:18px;
+font-size:15px;
 color:#cbd5e1;
 }
 
 /* BUTTONS */
 .buttons{
-margin-top:30px;
+margin-top:25px;
 display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
+flex-direction:column;
+gap:12px;
 }
 
 .btn{
-padding:14px 30px;
-border-radius:14px;
+padding:14px;
+border-radius:12px;
 font-weight:600;
 text-decoration:none;
 font-size:15px;
 transition:0.2s;
 cursor:pointer;
-display:inline-block;
 }
 
 .primary{
 background:linear-gradient(90deg,#5865F2,#7c3aed);
 color:white;
-box-shadow:0 0 40px rgba(88,101,242,0.4);
+box-shadow:0 0 30px rgba(88,101,242,0.4);
 }
 
 .primary:active{
-transform:scale(0.92);
+transform:scale(0.95);
 }
 
 .secondary{
@@ -129,14 +114,14 @@ color:white;
 }
 
 .secondary:active{
-transform:scale(0.92);
+transform:scale(0.95);
 }
 
 /* DASHBOARD */
 .dashboard{
-margin-top:35px;
 display:none;
-animation:fade 0.4s ease;
+margin-top:20px;
+animation:fade 0.3s ease;
 }
 
 @keyframes fade{
@@ -146,9 +131,9 @@ to{opacity:1; transform:translateY(0);}
 
 /* STATUS */
 .status{
-margin-top:15px;
-font-size:13px;
+font-size:12px;
 color:#94a3b8;
+margin-top:10px;
 }
 
 .dot{
@@ -157,29 +142,23 @@ height:8px;
 background:#22c55e;
 border-radius:50%;
 display:inline-block;
-margin-right:6px;
+margin-right:5px;
 box-shadow:0 0 10px #22c55e;
 }
 
-/* GUILDS UI */
+/* GUILDS */
 .guilds{
-margin-top:25px;
+margin-top:20px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
+grid-template-columns:1fr;
+gap:10px;
 }
 
 .guild{
-padding:15px;
-border-radius:12px;
+padding:12px;
+border-radius:10px;
 background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.08);
-transition:0.3s;
-}
-
-.guild:hover{
-transform:translateY(-5px);
-border-color:#5865F2;
 }
 
 </style>
@@ -188,8 +167,6 @@ border-color:#5865F2;
 <body>
 
 <div class="bg"></div>
-<div class="glow g1"></div>
-<div class="glow g2"></div>
 
 <div class="container">
 
@@ -197,7 +174,7 @@ border-color:#5865F2;
 
 <h1>CoreBot</h1>
 
-<p>Dashboard Discord moderno</p>
+<p>Discord Dashboard moderno</p>
 
 <!-- LOGIN -->
 <div id="login">
@@ -222,30 +199,28 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permiss
 <div id="dashboard" class="dashboard">
 
 <div class="status">
-<span class="dot"></span> Sessão simulada ativa
+<span class="dot"></span> Sessão ativa
 </div>
 
-<p style="margin-top:20px;">
-Bem-vindo ao CoreBot Dashboard
-</p>
+<p style="margin-top:15px;">Bem-vindo ao painel</p>
 
 <div class="guilds">
 
-<div class="guild">Servidor do Discord</div>
-<div class="guild">Servidor da Comunidade</div>
+<div class="guild">Servidor Discord</div>
+<div class="guild">Servidor Comunidade</div>
 <div class="guild">Servidor Gaming</div>
 
 </div>
 
-<div class="buttons" style="margin-top:25px;">
+<div class="buttons">
 
 <a class="btn primary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-➕ Adicionar ao Servidor
+➕ Adicionar Bot
 </a>
 
 <a class="btn secondary"
-onclick="alert('Dashboard em desenvolvimento')">
+onclick="alert('Dashboard em construção')">
 ⚙ Dashboard
 </a>
 
@@ -259,11 +234,11 @@ onclick="alert('Dashboard em desenvolvimento')">
 
 <script>
 
-/* simula login visual */
+/* simulação login */
 setTimeout(()=>{
 document.getElementById("login").style.display="none";
 document.getElementById("dashboard").style.display="block";
-},1600);
+},1400);
 
 </script>
 
