@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreBot • Verify</title>
+<title>CoreBot • Verification System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -28,36 +28,23 @@ overflow:hidden;
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at 25% 25%,#5865F2 0%,transparent 40%),
-radial-gradient(circle at 75% 75%,#7c3aed 0%,transparent 40%),
+radial-gradient(circle at 20% 20%,#5865F2 0%,transparent 40%),
+radial-gradient(circle at 80% 80%,#7c3aed 0%,transparent 40%),
 radial-gradient(circle at center,#00c2ff 0%,transparent 60%),
 #050816;
 z-index:-2;
 }
 
-/* GLOW */
+/* GLOWS */
 .glow{
 position:absolute;
 filter:blur(200px);
-opacity:0.3;
+opacity:0.25;
 border-radius:50%;
 }
 
-.g1{
-width:500px;
-height:500px;
-background:#5865F2;
-top:-180px;
-left:-180px;
-}
-
-.g2{
-width:500px;
-height:500px;
-background:#7c3aed;
-bottom:-180px;
-right:-180px;
-}
+.g1{width:500px;height:500px;background:#5865F2;top:-180px;left:-180px;}
+.g2{width:500px;height:500px;background:#7c3aed;bottom:-180px;right:-180px;}
 
 /* CENTER */
 .container{
@@ -65,21 +52,20 @@ height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:20px;
 }
 
-/* GLASS CARD */
+/* CARD */
 .card{
-max-width:900px;
-text-align:center;
-padding:85px 50px;
+width:900px;
+padding:70px;
 border-radius:30px;
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(25px);
 border:1px solid rgba(255,255,255,0.08);
-box-shadow:0 30px 120px rgba(0,0,0,0.6);
-transform:perspective(1000px) rotateX(6deg);
+box-shadow:0 40px 120px rgba(0,0,0,0.6);
+text-align:center;
 animation:float 5s ease-in-out infinite;
+transform:perspective(1000px) rotateX(6deg);
 }
 
 @keyframes float{
@@ -88,78 +74,110 @@ animation:float 5s ease-in-out infinite;
 100%{transform:translateY(0) perspective(1000px) rotateX(6deg);}
 }
 
+/* STEPS */
+.step{
+display:none;
+animation:fade 0.6s ease;
+}
+
+.step.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
 /* TITLE */
 h1{
-font-size:95px;
+font-size:80px;
 font-weight:900;
 background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-/* TEXT */
 p{
-margin-top:18px;
-font-size:19px;
+margin-top:15px;
 color:#cbd5e1;
-line-height:1.7;
-max-width:750px;
-margin-inline:auto;
+font-size:18px;
 }
 
 /* BUTTONS */
-.buttons{
-margin-top:40px;
-}
-
 .btn{
 display:inline-block;
-padding:15px 34px;
-margin:10px;
+margin-top:30px;
+padding:15px 35px;
 border-radius:14px;
-font-weight:600;
 text-decoration:none;
-font-size:16px;
+font-weight:600;
 transition:0.3s;
+cursor:pointer;
 }
 
 .primary{
 background:linear-gradient(90deg,#5865F2,#7c3aed);
 color:white;
-box-shadow:0 0 35px rgba(88,101,242,0.5);
+box-shadow:0 0 40px rgba(88,101,242,0.4);
 }
 
 .primary:hover{
 transform:translateY(-6px);
-box-shadow:0 0 60px rgba(88,101,242,0.8);
 }
 
-.secondary{
-border:1px solid rgba(255,255,255,0.2);
-background:rgba(255,255,255,0.05);
-color:white;
-}
-
-.secondary:hover{
-transform:translateY(-6px);
-border-color:#5865F2;
-}
-
-/* SMALL TEXT */
-.small{
+/* CAPTCHA BOX */
+.captcha{
 margin-top:25px;
-font-size:13px;
-color:#94a3b8;
+padding:25px;
+border-radius:15px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+display:inline-block;
+}
+
+.fake-box{
+width:35px;
+height:35px;
+border:2px solid white;
+display:inline-block;
+margin-right:10px;
+vertical-align:middle;
+cursor:pointer;
+}
+
+.checked{
+background:#5865F2;
+box-shadow:0 0 20px #5865F2;
+}
+
+/* DISCORD LOGIN BOX */
+.discord-box{
+margin-top:30px;
+padding:20px;
+border-radius:20px;
+background:rgba(88,101,242,0.1);
+border:1px solid rgba(88,101,242,0.3);
+}
+
+/* ANIMATION BUTTON */
+.fade-btn{
+opacity:0;
+transform:translateY(20px);
+transition:0.5s;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="bg"></div>
-
 <div class="glow g1"></div>
 <div class="glow g2"></div>
 
@@ -167,36 +185,84 @@ color:#94a3b8;
 
 <div class="card">
 
+<!-- STEP 1 CAPTCHA -->
+<div class="step active" id="step1">
+
+<h1>Verificação</h1>
+<p>Confirma que não és um bot</p>
+
+<div class="captcha">
+<div class="fake-box" onclick="check(this)"></div>
+<span>Sou humano</span>
+</div>
+
+<br>
+
+<button class="btn primary fade-btn" id="btn1" onclick="next(2)">
+Continuar
+</button>
+
+</div>
+
+<!-- STEP 2 DISCORD LOGIN -->
+<div class="step" id="step2">
+
+<h1>Login Discord</h1>
+<p>Autentica-te com a tua conta Discord</p>
+
+<div class="discord-box">
+🔐 Sistema seguro OAuth2 Discord
+</div>
+
+<a class="btn primary"
+href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&response_type=code&permissions=8&scope=identify%20guilds">
+Entrar com Discord
+</a>
+
+<br>
+
+<button class="btn primary fade-btn" onclick="next(3)">
+Continuar
+</button>
+
+</div>
+
+<!-- STEP 3 BOT INVITE -->
+<div class="step" id="step3">
+
 <h1>CoreBot</h1>
+<p>Agora adiciona o bot ao teu servidor</p>
 
-<p>
-Sistema de verificação moderno para Discord.
-Autenticação segura + controlo de acesso + proteção de servidores.
-</p>
-
-<div class="buttons">
-
-<!-- ADD BOT -->
 <a class="btn primary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
 ➕ Adicionar Bot
 </a>
 
-<!-- VERIFY / LOGIN -->
-<a class="btn secondary"
-href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-🔐 Login / Verificar Discord
-</a>
-
-</div>
-
-<div class="small">
-Sistema de verificação via autorização Discord
 </div>
 
 </div>
 
 </div>
+
+<script>
+
+function check(el){
+el.classList.toggle("checked");
+document.getElementById("btn1").classList.add("show");
+}
+
+function next(step){
+
+document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+document.getElementById("step"+step).classList.add("active");
+
+setTimeout(()=>{
+document.querySelectorAll(".fade-btn").forEach(b=>b.classList.add("show"));
+},200);
+
+}
+
+</script>
 
 </body>
 </html>
