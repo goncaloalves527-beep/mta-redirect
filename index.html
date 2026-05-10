@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreBot • Interactive UI</title>
+<title>CoreBot • Secure Access</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- CAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <style>
 
@@ -35,7 +38,6 @@ radial-gradient(circle at center,#00c2ff 0%,transparent 60%),
 z-index:-3;
 }
 
-/* GLOW */
 .glow{
 position:absolute;
 filter:blur(220px);
@@ -57,7 +59,7 @@ justify-content:center;
 /* CARD */
 .card{
 width:900px;
-padding:80px 60px;
+padding:70px 60px;
 border-radius:30px;
 background:rgba(255,255,255,0.06);
 backdrop-filter:blur(30px);
@@ -78,14 +80,13 @@ overflow:hidden;
 
 /* TITLE */
 h1{
-font-size:85px;
+font-size:80px;
 font-weight:900;
 background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-/* TEXT */
 p{
 margin-top:10px;
 font-size:18px;
@@ -108,46 +109,38 @@ font-weight:600;
 text-decoration:none;
 font-size:15px;
 transition:0.2s;
-display:inline-block;
 cursor:pointer;
-user-select:none;
-position:relative;
+display:inline-block;
 }
 
-/* CLICK EFFECT */
-.btn:active{
-transform:scale(0.92);
-}
-
-/* PRIMARY BUTTON */
 .primary{
 background:linear-gradient(90deg,#5865F2,#7c3aed);
 color:white;
 box-shadow:0 0 40px rgba(88,101,242,0.4);
 }
 
-.primary:hover{
-transform:translateY(-4px);
-box-shadow:0 0 70px rgba(88,101,242,0.8);
+.primary:active{
+transform:scale(0.92);
 }
 
-/* SECONDARY */
 .secondary{
 background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.2);
 color:white;
 }
 
-.secondary:hover{
-transform:translateY(-4px);
-border-color:#5865F2;
+.secondary:active{
+transform:scale(0.92);
 }
 
-/* DASHBOARD */
-.dashboard{
-margin-top:40px;
+/* STEPS */
+.step{
 display:none;
-animation:fade 0.5s ease;
+}
+
+.step.active{
+display:block;
+animation:fade 0.4s ease;
 }
 
 @keyframes fade{
@@ -172,26 +165,6 @@ margin-right:6px;
 box-shadow:0 0 10px #22c55e;
 }
 
-/* TOAST */
-.toast{
-position:fixed;
-bottom:30px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
-padding:12px 20px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.1);
-opacity:0;
-transition:0.3s;
-}
-
-.toast.show{
-opacity:1;
-bottom:50px;
-}
-
 </style>
 </head>
 
@@ -206,19 +179,37 @@ bottom:50px;
 <div class="card">
 
 <h1>CoreBot</h1>
+<p>Sistema de verificação seguro</p>
 
-<p>Sistema de verificação Discord moderno</p>
+<!-- STEP 1 CAPTCHA -->
+<div id="step1" class="step active">
 
-<!-- LOGIN -->
-<div id="login">
+<p>Confirma que és humano</p>
+
+<div style="display:flex;justify-content:center;margin-top:20px;">
+<div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+</div>
+
+<div class="buttons">
+<button class="btn primary" onclick="verifyCaptcha()">Continuar</button>
+</div>
+
+</div>
+
+<!-- STEP 2 LOGIN -->
+<div id="step2" class="step">
+
+<p>Agora faz login com Discord</p>
 
 <div class="buttons">
 
-<a class="btn primary" onclick="clickLogin()">
+<a class="btn primary"
+onclick="goLogin()">
 🔐 Login Discord
 </a>
 
-<a class="btn secondary" onclick="clickAdd()">
+<a class="btn secondary"
+onclick="addBot()">
 ➕ Adicionar Bot
 </a>
 
@@ -226,22 +217,24 @@ bottom:50px;
 
 </div>
 
-<!-- DASHBOARD -->
-<div id="dashboard" class="dashboard">
+<!-- STEP 3 DASHBOARD -->
+<div id="step3" class="step">
 
 <div class="status">
-<span class="dot"></span> Utilizador autenticado
+<span class="dot"></span> Acesso autorizado
 </div>
 
-<p style="margin-top:20px;">Bem-vindo ao painel CoreBot</p>
+<p style="margin-top:20px;">Bem-vindo ao CoreBot</p>
 
 <div class="buttons">
 
-<a class="btn primary" onclick="clickAdd()">
+<a class="btn primary"
+onclick="addBot()">
 ➕ Adicionar ao Servidor
 </a>
 
-<a class="btn secondary" onclick="clickDash()">
+<a class="btn secondary"
+onclick="alert('Dashboard em desenvolvimento')">
 ⚙ Dashboard
 </a>
 
@@ -253,39 +246,31 @@ bottom:50px;
 
 </div>
 
-<!-- TOAST -->
-<div id="toast" class="toast">Ação executada</div>
-
 <script>
 
-function showToast(text){
-let t=document.getElementById("toast");
-t.innerText=text;
-t.classList.add("show");
+function verifyCaptcha(){
+let response = grecaptcha.getResponse();
 
-setTimeout(()=>{
-t.classList.remove("show");
-},2000);
+if(response.length === 0){
+alert("Completa o CAPTCHA primeiro");
+return;
 }
 
-/* LOGIN */
-function clickLogin(){
-showToast("Redirecionando para Discord...");
-setTimeout(()=>{
-document.getElementById("login").style.display="none";
-document.getElementById("dashboard").style.display="block";
-},1200);
+document.getElementById("step1").classList.remove("active");
+document.getElementById("step2").classList.add("active");
 }
 
-/* ADD BOT */
-function clickAdd(){
-showToast("A abrir convite do bot...");
-window.open("https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot");
+function goLogin(){
+window.location.href =
+"https://discord.com/oauth2/authorize?client_id=1500189077818052662&response_type=code&scope=identify%20guilds";
 }
 
-/* DASHBOARD */
-function clickDash(){
-showToast("Dashboard em construção...");
+function addBot(){
+window.open(
+"https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot"
+);
+document.getElementById("step2").classList.remove("active");
+document.getElementById("step3").classList.add("active");
 }
 
 </script>
