@@ -20,513 +20,183 @@ font-family:'Poppins',sans-serif;
 body{
 background:#050816;
 color:white;
-overflow-x:hidden;
-}
-
-/* FUNDO */
-
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-z-index:-2;
-background:
-radial-gradient(circle at top left,#5865F2 0%,transparent 30%),
-radial-gradient(circle at bottom right,#7c3aed 0%,transparent 30%),
-#050816;
-}
-
-/* NAVBAR */
-
-nav{
-width:100%;
-height:90px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 60px;
-position:fixed;
-top:0;
-z-index:999;
-background:rgba(10,15,25,0.5);
-backdrop-filter:blur(20px);
-border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.logo{
-font-size:34px;
-font-weight:800;
-background:linear-gradient(90deg,#5865F2,#9b5cff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-nav .links a{
-color:white;
-text-decoration:none;
-margin-left:30px;
-font-size:17px;
-transition:0.3s;
-font-weight:500;
-}
-
-nav .links a:hover{
-color:#5865F2;
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:30px;
-position:relative;
-}
-
-.hero-box{
-width:100%;
-max-width:1200px;
-padding:80px 50px;
-border-radius:35px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(25px);
-border:1px solid rgba(255,255,255,0.08);
-box-shadow:0 20px 80px rgba(0,0,0,0.5);
-text-align:center;
-animation:float 5s ease-in-out infinite;
-}
-
-.hero h1{
-font-size:110px;
-font-weight:800;
-line-height:1;
-margin-bottom:25px;
-
-background:linear-gradient(
-90deg,
-#5865F2,
-#9b5cff,
-#00c2ff
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.hero p{
-max-width:850px;
-margin:auto;
-font-size:22px;
-line-height:1.8;
-color:#cbd5e1;
-}
-
-/* BOTÕES */
-
-.buttons{
-margin-top:45px;
-}
-
-.btn{
-display:inline-block;
-padding:16px 38px;
-margin:10px;
-border-radius:18px;
-text-decoration:none;
-font-size:18px;
-font-weight:600;
-transition:0.4s;
-}
-
-.btn-primary{
-background:linear-gradient(90deg,#5865F2,#7c3aed);
-color:white;
-box-shadow:0 0 35px rgba(88,101,242,0.5);
-}
-
-.btn-primary:hover{
-transform:translateY(-6px) scale(1.05);
-box-shadow:0 0 50px rgba(88,101,242,0.8);
-}
-
-.btn-secondary{
-border:1px solid rgba(255,255,255,0.1);
-background:rgba(255,255,255,0.05);
-color:white;
-backdrop-filter:blur(10px);
-}
-
-.btn-secondary:hover{
-transform:translateY(-6px);
-border-color:#5865F2;
-}
-
-/* FEATURES */
-
-.features{
-padding:120px 50px;
-}
-
-.section-title{
-text-align:center;
-font-size:55px;
-margin-bottom:70px;
-font-weight:700;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-max-width:1400px;
-margin:auto;
-}
-
-.card{
-padding:35px;
-border-radius:30px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
-transition:0.4s;
-position:relative;
 overflow:hidden;
 }
 
-.card::before{
-content:'';
-position:absolute;
-width:200px;
-height:200px;
-background:#5865F2;
-filter:blur(100px);
-top:-50px;
-right:-50px;
-opacity:0.15;
+/* BACKGROUND 3D */
+.bg{
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 20%,#5865F2 0%,transparent 40%),
+radial-gradient(circle at 80% 80%,#7c3aed 0%,transparent 40%),
+radial-gradient(circle at center,#00c2ff 0%,transparent 55%),
+#050816;
+z-index:-2;
 }
 
-.card:hover{
-transform:translateY(-10px) rotateX(4deg);
-border-color:#5865F2;
-box-shadow:0 20px 60px rgba(88,101,242,0.2);
-}
-
-.card h3{
-font-size:30px;
-margin-bottom:15px;
-}
-
-.card p{
-color:#cbd5e1;
-line-height:1.7;
-font-size:16px;
-}
-
-/* STATS */
-
-.stats{
-padding:100px 30px;
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:30px;
-}
-
-.stat{
-width:260px;
-padding:40px;
-text-align:center;
-border-radius:25px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
-}
-
-.stat h1{
-font-size:60px;
-font-weight:800;
-
-background:linear-gradient(90deg,#5865F2,#9b5cff);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-/* ABOUT */
-
-.about{
-padding:120px 30px;
-}
-
-.about-box{
-max-width:1000px;
-margin:auto;
-padding:60px;
-border-radius:35px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
-text-align:center;
-}
-
-.about h2{
-font-size:55px;
-margin-bottom:25px;
-}
-
-.about p{
-font-size:19px;
-line-height:1.9;
-color:#cbd5e1;
-}
-
-/* FOOTER */
-
-footer{
-margin-top:80px;
-padding:40px;
-text-align:center;
-background:rgba(255,255,255,0.03);
-border-top:1px solid rgba(255,255,255,0.08);
-color:#94a3b8;
-}
-
-/* GLOWS */
-
+/* GLOW */
 .glow{
 position:absolute;
-border-radius:50%;
 filter:blur(180px);
-z-index:-1;
+opacity:0.3;
+border-radius:50%;
 }
 
-.glow1{
+.g1{
 width:500px;
 height:500px;
 background:#5865F2;
 top:-150px;
 left:-150px;
-opacity:0.3;
 }
 
-.glow2{
-width:450px;
-height:450px;
+.g2{
+width:500px;
+height:500px;
 background:#7c3aed;
 bottom:-150px;
 right:-150px;
-opacity:0.3;
 }
 
-/* ANIMAÇÕES */
+/* CENTER CARD */
+.container{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+/* GLASS BOX */
+.box{
+max-width:1000px;
+text-align:center;
+padding:80px 50px;
+border-radius:30px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(25px);
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 30px 120px rgba(0,0,0,0.6);
+transform:perspective(1000px) rotateX(6deg);
+animation:float 5s ease-in-out infinite;
+}
 
 @keyframes float{
-0%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(-10px);
-}
-100%{
-transform:translateY(0px);
-}
+0%{transform:translateY(0) perspective(1000px) rotateX(6deg);}
+50%{transform:translateY(-12px) perspective(1000px) rotateX(6deg);}
+100%{transform:translateY(0) perspective(1000px) rotateX(6deg);}
 }
 
-/* RESPONSIVO */
-
-@media(max-width:768px){
-
-nav{
-padding:0 20px;
+/* TITLE */
+h1{
+font-size:100px;
+font-weight:900;
+background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.hero h1{
-font-size:70px;
+/* TEXT */
+p{
+margin-top:20px;
+font-size:20px;
+color:#cbd5e1;
+line-height:1.7;
+max-width:800px;
+margin-inline:auto;
 }
 
-.hero p{
-font-size:18px;
+/* BUTTONS */
+.buttons{
+margin-top:40px;
 }
 
-.section-title{
-font-size:40px;
+.btn{
+display:inline-block;
+padding:15px 35px;
+margin:10px;
+border-radius:14px;
+font-weight:600;
+text-decoration:none;
+transition:0.3s;
+font-size:17px;
 }
 
-.hero-box{
-padding:60px 25px;
+.primary{
+background:linear-gradient(90deg,#5865F2,#7c3aed);
+color:white;
+box-shadow:0 0 30px rgba(88,101,242,0.4);
 }
 
+.primary:hover{
+transform:translateY(-6px);
+box-shadow:0 0 50px rgba(88,101,242,0.7);
+}
+
+.secondary{
+border:1px solid rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.05);
+color:white;
+}
+
+.secondary:hover{
+transform:translateY(-6px);
+border-color:#5865F2;
+}
+
+/* SMALL TEXT */
+.small{
+margin-top:25px;
+font-size:13px;
+color:#94a3b8;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="bg"></div>
 
-<div class="glow glow1"></div>
-<div class="glow glow2"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
 
-<!-- NAVBAR -->
+<div class="container">
 
-<nav>
-
-<div class="logo">
-🤖 CoreBot
-</div>
-
-<div class="links">
-<a href="#features">Funções</a>
-<a href="#about">Sobre</a>
-<a href="/login">Dashboard</a>
-</div>
-
-</nav>
-
-<!-- HERO -->
-
-<section class="hero">
-
-<div class="hero-box">
+<div class="box">
 
 <h1>CoreBot</h1>
 
 <p>
-O bot Discord mais moderno para música,
-tickets, verify, logs, automod e dashboard premium.
-Criado para comunidades que querem qualidade profissional.
+Bot Discord moderno com música, tickets, verify, logs e automod.
+Interface premium 3D criada para comunidades profissionais.
 </p>
 
 <div class="buttons">
 
-<a class="btn btn-primary"
-href="https://discord.com/oauth2/authorize?client_id=CLIENT_ID_AQUI&permissions=8&scope=bot%20applications.commands">
+<!-- BOT INVITE (O TEU LINK) -->
+<a class="btn primary"
+href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
 ➕ Adicionar Bot
 </a>
 
-<a class="btn btn-secondary" href="/login">
-⚙ Dashboard
+<!-- MESMO LINK (não é login real, mas pediste assim) -->
+<a class="btn secondary"
+href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
+🔐 Login Discord
 </a>
 
 </div>
 
-</div>
-
-</section>
-
-<!-- FEATURES -->
-
-<section class="features" id="features">
-
-<h2 class="section-title">
-✨ Funções Premium
-</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>🎵 Música</h3>
-<p>
-Sistema de música completo com autoplay,
-fila, playlists e qualidade alta.
-</p>
-</div>
-
-<div class="card">
-<h3>🎫 Tickets</h3>
-<p>
-Tickets modernos com transcript,
-logs automáticos e suporte rápido.
-</p>
-</div>
-
-<div class="card">
-<h3>🛡 Segurança</h3>
-<p>
-Verify, automod, anti-links,
-anti-spam e proteção total.
-</p>
-</div>
-
-<div class="card">
-<h3>📊 Dashboard</h3>
-<p>
-Painel moderno para configurar
-todo o servidor facilmente.
-</p>
-</div>
-
-<div class="card">
-<h3>📈 Logs</h3>
-<p>
-Logs completos em tempo real
-para música e moderação.
-</p>
-</div>
-
-<div class="card">
-<h3>💎 VIP</h3>
-<p>
-Sistema premium com funções
-exclusivas e prioridade.
-</p>
+<div class="small">
+⚠ Este login usa autorização do Discord (bot invite link)
 </div>
 
 </div>
 
-</section>
-
-<!-- STATS -->
-
-<section class="stats">
-
-<div class="stat">
-<h1>150+</h1>
-<p>Servidores</p>
 </div>
-
-<div class="stat">
-<h1>25K+</h1>
-<p>Utilizadores</p>
-</div>
-
-<div class="stat">
-<h1>24/7</h1>
-<p>Online</p>
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section class="about" id="about">
-
-<div class="about-box">
-
-<h2>📌 Sobre o CoreBot</h2>
-
-<p>
-CoreBot foi criado por Gonçalo para trazer
-uma experiência moderna ao Discord.
-Tudo num único bot:
-música, tickets, verify,
-logs, automod e dashboard.
-</p>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-© 2026 CoreBot • Criado por Gonçalo
-</footer>
 
 </body>
 </html>
