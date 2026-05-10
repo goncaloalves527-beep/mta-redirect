@@ -46,7 +46,7 @@ border-radius:50%;
 .g1{width:500px;height:500px;background:#5865F2;top:-200px;left:-200px;}
 .g2{width:500px;height:500px;background:#7c3aed;bottom:-200px;right:-200px;}
 
-/* CONTAINER */
+/* CENTER */
 .container{
 height:100vh;
 display:flex;
@@ -57,13 +57,14 @@ padding:20px;
 
 /* CARD */
 .card{
-width:1000px;
-padding:70px 60px;
+width:950px;
+padding:75px 60px;
 border-radius:30px;
 background:rgba(255,255,255,0.06);
 backdrop-filter:blur(30px);
 border:1px solid rgba(255,255,255,0.12);
 box-shadow:0 50px 140px rgba(0,0,0,0.7);
+text-align:center;
 transform:perspective(1000px) rotateX(5deg);
 animation:float 6s ease-in-out infinite;
 overflow:hidden;
@@ -96,7 +97,7 @@ animation:shine 6s linear infinite;
 
 /* TITLE */
 h1{
-font-size:80px;
+font-size:85px;
 font-weight:900;
 background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
 -webkit-background-clip:text;
@@ -114,9 +115,9 @@ color:#cbd5e1;
 .buttons{
 margin-top:30px;
 display:flex;
+justify-content:center;
 gap:15px;
 flex-wrap:wrap;
-justify-content:center;
 }
 
 .btn{
@@ -164,44 +165,22 @@ display:none;
 .stats{
 display:flex;
 gap:20px;
-margin-top:25px;
+justify-content:center;
 flex-wrap:wrap;
+margin-top:25px;
 }
 
 .stat{
-flex:1;
-min-width:200px;
-padding:20px;
+padding:25px;
+min-width:250px;
 border-radius:15px;
 background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.08);
-text-align:center;
 }
 
 .stat h2{
-font-size:40px;
+font-size:42px;
 color:#5865F2;
-}
-
-/* SERVERS */
-.guilds{
-margin-top:25px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-}
-
-.guild{
-padding:15px;
-border-radius:12px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.08);
-transition:0.3s;
-}
-
-.guild:hover{
-transform:translateY(-5px);
-border-color:#5865F2;
 }
 
 /* STATUS */
@@ -234,9 +213,9 @@ box-shadow:0 0 10px #22c55e;
 
 <div class="card">
 
-<h1>CoreBot Dashboard</h1>
+<h1>CoreBot</h1>
 
-<p>Sistema de gestão Discord profissional</p>
+<p>Sistema de verificação e gestão Discord</p>
 
 <!-- LOGIN -->
 <div id="login">
@@ -250,7 +229,7 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&respons
 
 <a class="btn secondary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-➕ Add Bot
+➕ Adicionar Bot
 </a>
 
 </div>
@@ -261,35 +240,25 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permiss
 <div id="dashboard" class="dashboard">
 
 <div class="status">
-<span class="dot"></span> Conectado ao Discord
+<span class="dot"></span> Utilizador autenticado
 </div>
 
 <div class="stats">
 
 <div class="stat">
-<h2 id="servers">0</h2>
+<h2 id="servers">127</h2>
 <p>Servidores do Bot</p>
 </div>
 
 <div class="stat">
-<h2>24/7</h2>
-<p>Uptime</p>
+<h2>Online</h2>
+<p>Status</p>
 </div>
 
 <div class="stat">
-<h2>Pro</h2>
-<p>Plano</p>
+<h2>CoreBot</h2>
+<p>Dashboard</p>
 </div>
-
-</div>
-
-<h3 style="margin-top:30px;">Os teus servidores</h3>
-
-<div class="guilds">
-
-<div class="guild">Servidor Demo 1</div>
-<div class="guild">Servidor Demo 2</div>
-<div class="guild">Servidor Demo 3</div>
 
 </div>
 
@@ -297,7 +266,7 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permiss
 
 <a class="btn primary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-➕ Adicionar Bot ao Servidor
+➕ Adicionar ao Servidor
 </a>
 
 </div>
@@ -310,15 +279,11 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permiss
 
 <script>
 
-/* SIMULA LOGIN */
+/* SIMULA LOGIN (UI ONLY) */
 setTimeout(()=>{
 document.getElementById("login").style.display="none";
 document.getElementById("dashboard").style.display="block";
-
-/* SIMULA SERVIDORES DO BOT */
-document.getElementById("servers").innerText = "127";
-
-},1800);
+},1500);
 
 </script>
 
