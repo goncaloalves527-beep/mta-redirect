@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreBot • Secure Dashboard</title>
+<title>CoreBot • Interactive UI</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -52,7 +52,6 @@ height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:20px;
 }
 
 /* CARD */
@@ -69,24 +68,6 @@ transform:perspective(1000px) rotateX(5deg);
 animation:float 6s ease-in-out infinite;
 position:relative;
 overflow:hidden;
-}
-
-/* SHINE */
-.card::before{
-content:'';
-position:absolute;
-top:-50%;
-left:-50%;
-width:200%;
-height:200%;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent);
-transform:rotate(25deg);
-animation:shine 6s linear infinite;
-}
-
-@keyframes shine{
-0%{transform:translateX(-100%) rotate(25deg);}
-100%{transform:translateX(100%) rotate(25deg);}
 }
 
 @keyframes float{
@@ -125,12 +106,20 @@ padding:14px 30px;
 border-radius:14px;
 font-weight:600;
 text-decoration:none;
-transition:0.3s;
 font-size:15px;
+transition:0.2s;
 display:inline-block;
+cursor:pointer;
+user-select:none;
+position:relative;
 }
 
-/* PRIMARY */
+/* CLICK EFFECT */
+.btn:active{
+transform:scale(0.92);
+}
+
+/* PRIMARY BUTTON */
 .primary{
 background:linear-gradient(90deg,#5865F2,#7c3aed);
 color:white;
@@ -138,7 +127,7 @@ box-shadow:0 0 40px rgba(88,101,242,0.4);
 }
 
 .primary:hover{
-transform:translateY(-5px);
+transform:translateY(-4px);
 box-shadow:0 0 70px rgba(88,101,242,0.8);
 }
 
@@ -150,7 +139,7 @@ color:white;
 }
 
 .secondary:hover{
-transform:translateY(-5px);
+transform:translateY(-4px);
 border-color:#5865F2;
 }
 
@@ -158,6 +147,12 @@ border-color:#5865F2;
 .dashboard{
 margin-top:40px;
 display:none;
+animation:fade 0.5s ease;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 /* STATUS */
@@ -177,6 +172,26 @@ margin-right:6px;
 box-shadow:0 0 10px #22c55e;
 }
 
+/* TOAST */
+.toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+padding:12px 20px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.1);
+opacity:0;
+transition:0.3s;
+}
+
+.toast.show{
+opacity:1;
+bottom:50px;
+}
+
 </style>
 </head>
 
@@ -192,20 +207,18 @@ box-shadow:0 0 10px #22c55e;
 
 <h1>CoreBot</h1>
 
-<p>Sistema de verificação Discord seguro e moderno</p>
+<p>Sistema de verificação Discord moderno</p>
 
 <!-- LOGIN -->
 <div id="login">
 
 <div class="buttons">
 
-<a class="btn primary"
-href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&response_type=code&scope=identify%20guilds">
+<a class="btn primary" onclick="clickLogin()">
 🔐 Login Discord
 </a>
 
-<a class="btn secondary"
-href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
+<a class="btn secondary" onclick="clickAdd()">
 ➕ Adicionar Bot
 </a>
 
@@ -220,19 +233,15 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permiss
 <span class="dot"></span> Utilizador autenticado
 </div>
 
-<p style="margin-top:20px;">
-Bem-vindo ao teu painel CoreBot
-</p>
+<p style="margin-top:20px;">Bem-vindo ao painel CoreBot</p>
 
 <div class="buttons">
 
-<a class="btn primary"
-href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-➕ Adicionar Bot ao Servidor
+<a class="btn primary" onclick="clickAdd()">
+➕ Adicionar ao Servidor
 </a>
 
-<a class="btn secondary"
-href="#">
+<a class="btn secondary" onclick="clickDash()">
 ⚙ Dashboard
 </a>
 
@@ -244,13 +253,40 @@ href="#">
 
 </div>
 
+<!-- TOAST -->
+<div id="toast" class="toast">Ação executada</div>
+
 <script>
 
-/* SIMULA LOGIN VISUAL */
+function showToast(text){
+let t=document.getElementById("toast");
+t.innerText=text;
+t.classList.add("show");
+
+setTimeout(()=>{
+t.classList.remove("show");
+},2000);
+}
+
+/* LOGIN */
+function clickLogin(){
+showToast("Redirecionando para Discord...");
 setTimeout(()=>{
 document.getElementById("login").style.display="none";
 document.getElementById("dashboard").style.display="block";
-},1500);
+},1200);
+}
+
+/* ADD BOT */
+function clickAdd(){
+showToast("A abrir convite do bot...");
+window.open("https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot");
+}
+
+/* DASHBOARD */
+function clickDash(){
+showToast("Dashboard em construção...");
+}
 
 </script>
 
