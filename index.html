@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreBot • Login</title>
+<title>CoreBot • Dashboard</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -38,7 +38,7 @@ z-index:-2;
 /* GLOW */
 .glow{
 position:absolute;
-filter:blur(200px);
+filter:blur(220px);
 opacity:0.25;
 border-radius:50%;
 }
@@ -56,7 +56,7 @@ justify-content:center;
 
 /* CARD */
 .card{
-width:850px;
+width:900px;
 padding:80px 60px;
 border-radius:30px;
 background:rgba(255,255,255,0.06);
@@ -66,6 +66,8 @@ box-shadow:0 50px 140px rgba(0,0,0,0.7);
 text-align:center;
 transform:perspective(1000px) rotateX(5deg);
 animation:float 6s ease-in-out infinite;
+position:relative;
+overflow:hidden;
 }
 
 @keyframes float{
@@ -92,7 +94,7 @@ color:#cbd5e1;
 
 /* BUTTONS */
 .buttons{
-margin-top:35px;
+margin-top:30px;
 display:flex;
 justify-content:center;
 gap:15px;
@@ -100,7 +102,7 @@ flex-wrap:wrap;
 }
 
 .btn{
-padding:15px 32px;
+padding:14px 30px;
 border-radius:14px;
 font-weight:600;
 text-decoration:none;
@@ -110,7 +112,6 @@ cursor:pointer;
 display:inline-block;
 }
 
-/* PRIMARY */
 .primary{
 background:linear-gradient(90deg,#5865F2,#7c3aed);
 color:white;
@@ -121,7 +122,6 @@ box-shadow:0 0 40px rgba(88,101,242,0.4);
 transform:scale(0.92);
 }
 
-/* SECONDARY */
 .secondary{
 background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.2);
@@ -134,8 +134,8 @@ transform:scale(0.92);
 
 /* DASHBOARD */
 .dashboard{
+margin-top:35px;
 display:none;
-margin-top:30px;
 animation:fade 0.4s ease;
 }
 
@@ -144,6 +144,7 @@ from{opacity:0; transform:translateY(10px);}
 to{opacity:1; transform:translateY(0);}
 }
 
+/* STATUS */
 .status{
 margin-top:15px;
 font-size:13px;
@@ -158,6 +159,27 @@ border-radius:50%;
 display:inline-block;
 margin-right:6px;
 box-shadow:0 0 10px #22c55e;
+}
+
+/* GUILDS UI */
+.guilds{
+margin-top:25px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.guild{
+padding:15px;
+border-radius:12px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+transition:0.3s;
+}
+
+.guild:hover{
+transform:translateY(-5px);
+border-color:#5865F2;
 }
 
 </style>
@@ -175,15 +197,21 @@ box-shadow:0 0 10px #22c55e;
 
 <h1>CoreBot</h1>
 
-<p>Sistema de login Discord moderno</p>
+<p>Dashboard Discord moderno</p>
 
 <!-- LOGIN -->
 <div id="login">
 
 <div class="buttons">
 
-<a class="btn primary" onclick="loginDiscord()">
-🔐 Login com Discord
+<a class="btn primary"
+href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&response_type=code&scope=identify%20guilds">
+🔐 Login Discord
+</a>
+
+<a class="btn secondary"
+href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
+➕ Adicionar Bot
 </a>
 
 </div>
@@ -194,18 +222,26 @@ box-shadow:0 0 10px #22c55e;
 <div id="dashboard" class="dashboard">
 
 <div class="status">
-<span class="dot"></span> Sessão iniciada
+<span class="dot"></span> Sessão simulada ativa
 </div>
 
-<p style="margin-top:15px;">
+<p style="margin-top:20px;">
 Bem-vindo ao CoreBot Dashboard
 </p>
 
-<div class="buttons">
+<div class="guilds">
+
+<div class="guild">Servidor do Discord</div>
+<div class="guild">Servidor da Comunidade</div>
+<div class="guild">Servidor Gaming</div>
+
+</div>
+
+<div class="buttons" style="margin-top:25px;">
 
 <a class="btn primary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-➕ Adicionar Bot
+➕ Adicionar ao Servidor
 </a>
 
 <a class="btn secondary"
@@ -223,19 +259,11 @@ onclick="alert('Dashboard em desenvolvimento')">
 
 <script>
 
-function loginDiscord(){
-
-// aqui simula login (front-end)
-window.location.href =
-"https://discord.com/oauth2/authorize?client_id=1500189077818052662&response_type=code&scope=identify%20guilds";
-
-}
-
-/* simulação visual após login */
+/* simula login visual */
 setTimeout(()=>{
 document.getElementById("login").style.display="none";
 document.getElementById("dashboard").style.display="block";
-},1500);
+},1600);
 
 </script>
 
