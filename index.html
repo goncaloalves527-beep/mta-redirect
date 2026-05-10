@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreBot • Secure Access</title>
+<title>CoreBot • Dashboard</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -32,13 +32,13 @@ radial-gradient(circle at 20% 20%,#5865F2 0%,transparent 40%),
 radial-gradient(circle at 80% 80%,#7c3aed 0%,transparent 40%),
 radial-gradient(circle at center,#00c2ff 0%,transparent 60%),
 #050816;
-z-index:-2;
+z-index:-3;
 }
 
 /* GLOW */
 .glow{
 position:absolute;
-filter:blur(200px);
+filter:blur(220px);
 opacity:0.25;
 border-radius:50%;
 }
@@ -46,7 +46,7 @@ border-radius:50%;
 .g1{width:500px;height:500px;background:#5865F2;top:-200px;left:-200px;}
 .g2{width:500px;height:500px;background:#7c3aed;bottom:-200px;right:-200px;}
 
-/* CENTER */
+/* CONTAINER */
 .container{
 height:100vh;
 display:flex;
@@ -56,18 +56,36 @@ justify-content:center;
 
 /* CARD */
 .card{
-width:900px;
+width:950px;
 padding:80px 60px;
 border-radius:30px;
 background:rgba(255,255,255,0.06);
 backdrop-filter:blur(30px);
 border:1px solid rgba(255,255,255,0.12);
-box-shadow:0 40px 120px rgba(0,0,0,0.7);
+box-shadow:0 50px 140px rgba(0,0,0,0.7);
 text-align:center;
 transform:perspective(1000px) rotateX(6deg);
 animation:float 6s ease-in-out infinite;
 position:relative;
 overflow:hidden;
+}
+
+/* SHINE */
+.card::before{
+content:'';
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent);
+transform:rotate(25deg);
+animation:shine 6s linear infinite;
+}
+
+@keyframes shine{
+0%{transform:translateX(-100%) rotate(25deg);}
+100%{transform:translateX(100%) rotate(25deg);}
 }
 
 @keyframes float{
@@ -90,18 +108,26 @@ p{
 margin-top:15px;
 font-size:18px;
 color:#cbd5e1;
+line-height:1.7;
 }
 
 /* BUTTONS */
+.buttons{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
 .btn{
-display:inline-block;
-margin-top:30px;
-padding:15px 35px;
+padding:15px 32px;
 border-radius:14px;
-text-decoration:none;
 font-weight:600;
+text-decoration:none;
+font-size:15px;
 transition:0.3s;
-cursor:pointer;
+display:inline-block;
 }
 
 /* PRIMARY */
@@ -112,7 +138,8 @@ box-shadow:0 0 40px rgba(88,101,242,0.4);
 }
 
 .primary:hover{
-transform:translateY(-6px);
+transform:translateY(-5px);
+box-shadow:0 0 70px rgba(88,101,242,0.8);
 }
 
 /* SECONDARY */
@@ -123,13 +150,29 @@ color:white;
 }
 
 .secondary:hover{
-transform:translateY(-6px);
+transform:translateY(-5px);
 border-color:#5865F2;
 }
 
-/* HIDDEN CONTENT */
-.hidden{
+/* DASHBOARD */
+.dashboard{
+margin-top:40px;
 display:none;
+text-align:left;
+}
+
+.guilds{
+margin-top:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+.guild{
+padding:15px;
+border-radius:12px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
 }
 
 /* STATUS */
@@ -162,40 +205,45 @@ box-shadow:0 0 10px #22c55e;
 
 <div class="card">
 
-<!-- LOGIN VIEW -->
-<div id="loginView">
-
 <h1>CoreBot</h1>
 
-<p>Faça login com Discord para continuar</p>
+<p>Sistema de verificação e dashboard Discord moderno</p>
+
+<!-- LOGIN STATE -->
+<div id="login">
+
+<div class="buttons">
 
 <a class="btn primary"
-onclick="login()">
+href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&response_type=code&scope=identify%20guilds">
 🔐 Login Discord
+</a>
+
+<a class="btn secondary"
+href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
+➕ Adicionar Bot
 </a>
 
 </div>
 
-<!-- MAIN VIEW -->
-<div id="mainView" class="hidden">
+</div>
 
-<h1>CoreBot</h1>
-
-<p>Sistema desbloqueado com sucesso</p>
+<!-- DASHBOARD MOCK -->
+<div id="dashboard" class="dashboard">
 
 <div class="status">
 <span class="dot"></span> Utilizador autenticado
 </div>
 
-<a class="btn primary"
-href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-➕ Adicionar Bot
-</a>
+<h2 style="margin-top:20px;">Os teus servidores</h2>
 
-<a class="btn secondary"
-href="#">
-⚙ Dashboard
-</a>
+<div class="guilds">
+
+<div class="guild">Servidor 1</div>
+<div class="guild">Servidor 2</div>
+<div class="guild">Servidor 3</div>
+
+</div>
 
 </div>
 
@@ -205,13 +253,11 @@ href="#">
 
 <script>
 
-function login(){
-
-// simulação de login
-document.getElementById("loginView").style.display="none";
-document.getElementById("mainView").style.display="block";
-
-}
+/* SIMULA LOGIN (só front-end) */
+setTimeout(()=>{
+document.getElementById("login").style.display="none";
+document.getElementById("dashboard").style.display="block";
+},2000);
 
 </script>
 
