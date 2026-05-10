@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreBot • Discord Bot</title>
+<title>CoreBot • Verify</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -28,9 +28,9 @@ overflow:hidden;
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at 20% 20%,#5865F2 0%,transparent 40%),
-radial-gradient(circle at 80% 80%,#7c3aed 0%,transparent 40%),
-radial-gradient(circle at center,#00c2ff 0%,transparent 55%),
+radial-gradient(circle at 25% 25%,#5865F2 0%,transparent 40%),
+radial-gradient(circle at 75% 75%,#7c3aed 0%,transparent 40%),
+radial-gradient(circle at center,#00c2ff 0%,transparent 60%),
 #050816;
 z-index:-2;
 }
@@ -38,7 +38,7 @@ z-index:-2;
 /* GLOW */
 .glow{
 position:absolute;
-filter:blur(180px);
+filter:blur(200px);
 opacity:0.3;
 border-radius:50%;
 }
@@ -47,19 +47,19 @@ border-radius:50%;
 width:500px;
 height:500px;
 background:#5865F2;
-top:-150px;
-left:-150px;
+top:-180px;
+left:-180px;
 }
 
 .g2{
 width:500px;
 height:500px;
 background:#7c3aed;
-bottom:-150px;
-right:-150px;
+bottom:-180px;
+right:-180px;
 }
 
-/* CENTER CARD */
+/* CENTER */
 .container{
 height:100vh;
 display:flex;
@@ -68,11 +68,11 @@ justify-content:center;
 padding:20px;
 }
 
-/* GLASS BOX */
-.box{
-max-width:1000px;
+/* GLASS CARD */
+.card{
+max-width:900px;
 text-align:center;
-padding:80px 50px;
+padding:85px 50px;
 border-radius:30px;
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(25px);
@@ -90,7 +90,7 @@ animation:float 5s ease-in-out infinite;
 
 /* TITLE */
 h1{
-font-size:100px;
+font-size:95px;
 font-weight:900;
 background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
 -webkit-background-clip:text;
@@ -99,11 +99,11 @@ background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
 
 /* TEXT */
 p{
-margin-top:20px;
-font-size:20px;
+margin-top:18px;
+font-size:19px;
 color:#cbd5e1;
 line-height:1.7;
-max-width:800px;
+max-width:750px;
 margin-inline:auto;
 }
 
@@ -114,24 +114,24 @@ margin-top:40px;
 
 .btn{
 display:inline-block;
-padding:15px 35px;
+padding:15px 34px;
 margin:10px;
 border-radius:14px;
 font-weight:600;
 text-decoration:none;
+font-size:16px;
 transition:0.3s;
-font-size:17px;
 }
 
 .primary{
 background:linear-gradient(90deg,#5865F2,#7c3aed);
 color:white;
-box-shadow:0 0 30px rgba(88,101,242,0.4);
+box-shadow:0 0 35px rgba(88,101,242,0.5);
 }
 
 .primary:hover{
 transform:translateY(-6px);
-box-shadow:0 0 50px rgba(88,101,242,0.7);
+box-shadow:0 0 60px rgba(88,101,242,0.8);
 }
 
 .secondary{
@@ -165,33 +165,33 @@ color:#94a3b8;
 
 <div class="container">
 
-<div class="box">
+<div class="card">
 
 <h1>CoreBot</h1>
 
 <p>
-Bot Discord moderno com música, tickets, verify, logs e automod.
-Interface premium 3D criada para comunidades profissionais.
+Sistema de verificação moderno para Discord.
+Autenticação segura + controlo de acesso + proteção de servidores.
 </p>
 
 <div class="buttons">
 
-<!-- BOT INVITE (O TEU LINK) -->
+<!-- ADD BOT -->
 <a class="btn primary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
 ➕ Adicionar Bot
 </a>
 
-<!-- MESMO LINK (não é login real, mas pediste assim) -->
+<!-- VERIFY / LOGIN -->
 <a class="btn secondary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-🔐 Login Discord
+🔐 Login / Verificar Discord
 </a>
 
 </div>
 
 <div class="small">
-⚠ Este login usa autorização do Discord (bot invite link)
+Sistema de verificação via autorização Discord
 </div>
 
 </div>
