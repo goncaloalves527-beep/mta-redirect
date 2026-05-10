@@ -52,22 +52,22 @@ height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
+padding:20px;
 }
 
 /* CARD */
 .card{
-width:950px;
-padding:80px 60px;
+width:1000px;
+padding:70px 60px;
 border-radius:30px;
 background:rgba(255,255,255,0.06);
 backdrop-filter:blur(30px);
 border:1px solid rgba(255,255,255,0.12);
 box-shadow:0 50px 140px rgba(0,0,0,0.7);
-text-align:center;
-transform:perspective(1000px) rotateX(6deg);
+transform:perspective(1000px) rotateX(5deg);
 animation:float 6s ease-in-out infinite;
-position:relative;
 overflow:hidden;
+position:relative;
 }
 
 /* SHINE */
@@ -89,14 +89,14 @@ animation:shine 6s linear infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0) perspective(1000px) rotateX(6deg);}
-50%{transform:translateY(-12px) perspective(1000px) rotateX(6deg);}
-100%{transform:translateY(0) perspective(1000px) rotateX(6deg);}
+0%{transform:translateY(0) perspective(1000px) rotateX(5deg);}
+50%{transform:translateY(-12px) perspective(1000px) rotateX(5deg);}
+100%{transform:translateY(0) perspective(1000px) rotateX(5deg);}
 }
 
 /* TITLE */
 h1{
-font-size:85px;
+font-size:80px;
 font-weight:900;
 background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
 -webkit-background-clip:text;
@@ -105,29 +105,29 @@ background:linear-gradient(90deg,#5865F2,#7c3aed,#00c2ff);
 
 /* TEXT */
 p{
-margin-top:15px;
+margin-top:10px;
 font-size:18px;
 color:#cbd5e1;
-line-height:1.7;
 }
 
 /* BUTTONS */
 .buttons{
-margin-top:35px;
+margin-top:30px;
 display:flex;
-justify-content:center;
 gap:15px;
 flex-wrap:wrap;
+justify-content:center;
 }
 
 .btn{
-padding:15px 32px;
+padding:14px 30px;
 border-radius:14px;
 font-weight:600;
 text-decoration:none;
-font-size:15px;
 transition:0.3s;
 display:inline-block;
+font-size:15px;
+cursor:pointer;
 }
 
 /* PRIMARY */
@@ -158,13 +158,36 @@ border-color:#5865F2;
 .dashboard{
 margin-top:40px;
 display:none;
-text-align:left;
 }
 
+/* STATS */
+.stats{
+display:flex;
+gap:20px;
+margin-top:25px;
+flex-wrap:wrap;
+}
+
+.stat{
+flex:1;
+min-width:200px;
+padding:20px;
+border-radius:15px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+text-align:center;
+}
+
+.stat h2{
+font-size:40px;
+color:#5865F2;
+}
+
+/* SERVERS */
 .guilds{
-margin-top:20px;
+margin-top:25px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:15px;
 }
 
@@ -173,6 +196,12 @@ padding:15px;
 border-radius:12px;
 background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.08);
+transition:0.3s;
+}
+
+.guild:hover{
+transform:translateY(-5px);
+border-color:#5865F2;
 }
 
 /* STATUS */
@@ -205,11 +234,11 @@ box-shadow:0 0 10px #22c55e;
 
 <div class="card">
 
-<h1>CoreBot</h1>
+<h1>CoreBot Dashboard</h1>
 
-<p>Sistema de verificação e dashboard Discord moderno</p>
+<p>Sistema de gestão Discord profissional</p>
 
-<!-- LOGIN STATE -->
+<!-- LOGIN -->
 <div id="login">
 
 <div class="buttons">
@@ -221,27 +250,55 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&respons
 
 <a class="btn secondary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-➕ Adicionar Bot
+➕ Add Bot
 </a>
 
 </div>
 
 </div>
 
-<!-- DASHBOARD MOCK -->
+<!-- DASHBOARD -->
 <div id="dashboard" class="dashboard">
 
 <div class="status">
-<span class="dot"></span> Utilizador autenticado
+<span class="dot"></span> Conectado ao Discord
 </div>
 
-<h2 style="margin-top:20px;">Os teus servidores</h2>
+<div class="stats">
+
+<div class="stat">
+<h2 id="servers">0</h2>
+<p>Servidores do Bot</p>
+</div>
+
+<div class="stat">
+<h2>24/7</h2>
+<p>Uptime</p>
+</div>
+
+<div class="stat">
+<h2>Pro</h2>
+<p>Plano</p>
+</div>
+
+</div>
+
+<h3 style="margin-top:30px;">Os teus servidores</h3>
 
 <div class="guilds">
 
-<div class="guild">Servidor 1</div>
-<div class="guild">Servidor 2</div>
-<div class="guild">Servidor 3</div>
+<div class="guild">Servidor Demo 1</div>
+<div class="guild">Servidor Demo 2</div>
+<div class="guild">Servidor Demo 3</div>
+
+</div>
+
+<div class="buttons">
+
+<a class="btn primary"
+href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
+➕ Adicionar Bot ao Servidor
+</a>
 
 </div>
 
@@ -253,11 +310,15 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permiss
 
 <script>
 
-/* SIMULA LOGIN (só front-end) */
+/* SIMULA LOGIN */
 setTimeout(()=>{
 document.getElementById("login").style.display="none";
 document.getElementById("dashboard").style.display="block";
-},2000);
+
+/* SIMULA SERVIDORES DO BOT */
+document.getElementById("servers").innerText = "127";
+
+},1800);
 
 </script>
 
