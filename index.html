@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreBot • Dashboard</title>
+<title>CoreBot • Secure Dashboard</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -46,7 +46,7 @@ border-radius:50%;
 .g1{width:500px;height:500px;background:#5865F2;top:-200px;left:-200px;}
 .g2{width:500px;height:500px;background:#7c3aed;bottom:-200px;right:-200px;}
 
-/* CENTER */
+/* CONTAINER */
 .container{
 height:100vh;
 display:flex;
@@ -57,8 +57,8 @@ padding:20px;
 
 /* CARD */
 .card{
-width:950px;
-padding:75px 60px;
+width:900px;
+padding:80px 60px;
 border-radius:30px;
 background:rgba(255,255,255,0.06);
 backdrop-filter:blur(30px);
@@ -67,8 +67,8 @@ box-shadow:0 50px 140px rgba(0,0,0,0.7);
 text-align:center;
 transform:perspective(1000px) rotateX(5deg);
 animation:float 6s ease-in-out infinite;
-overflow:hidden;
 position:relative;
+overflow:hidden;
 }
 
 /* SHINE */
@@ -126,9 +126,8 @@ border-radius:14px;
 font-weight:600;
 text-decoration:none;
 transition:0.3s;
-display:inline-block;
 font-size:15px;
-cursor:pointer;
+display:inline-block;
 }
 
 /* PRIMARY */
@@ -159,28 +158,6 @@ border-color:#5865F2;
 .dashboard{
 margin-top:40px;
 display:none;
-}
-
-/* STATS */
-.stats{
-display:flex;
-gap:20px;
-justify-content:center;
-flex-wrap:wrap;
-margin-top:25px;
-}
-
-.stat{
-padding:25px;
-min-width:250px;
-border-radius:15px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.08);
-}
-
-.stat h2{
-font-size:42px;
-color:#5865F2;
 }
 
 /* STATUS */
@@ -215,7 +192,7 @@ box-shadow:0 0 10px #22c55e;
 
 <h1>CoreBot</h1>
 
-<p>Sistema de verificação e gestão Discord</p>
+<p>Sistema de verificação Discord seguro e moderno</p>
 
 <!-- LOGIN -->
 <div id="login">
@@ -243,30 +220,20 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permiss
 <span class="dot"></span> Utilizador autenticado
 </div>
 
-<div class="stats">
-
-<div class="stat">
-<h2 id="servers">127</h2>
-<p>Servidores do Bot</p>
-</div>
-
-<div class="stat">
-<h2>Online</h2>
-<p>Status</p>
-</div>
-
-<div class="stat">
-<h2>CoreBot</h2>
-<p>Dashboard</p>
-</div>
-
-</div>
+<p style="margin-top:20px;">
+Bem-vindo ao teu painel CoreBot
+</p>
 
 <div class="buttons">
 
 <a class="btn primary"
 href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot">
-➕ Adicionar ao Servidor
+➕ Adicionar Bot ao Servidor
+</a>
+
+<a class="btn secondary"
+href="#">
+⚙ Dashboard
 </a>
 
 </div>
@@ -279,7 +246,7 @@ href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permiss
 
 <script>
 
-/* SIMULA LOGIN (UI ONLY) */
+/* SIMULA LOGIN VISUAL */
 setTimeout(()=>{
 document.getElementById("login").style.display="none";
 document.getElementById("dashboard").style.display="block";
