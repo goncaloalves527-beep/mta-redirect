@@ -227,4 +227,118 @@
 
     .feature p {
       color: #e8f7ff;
-      line-heig
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0,0,0,0.15);
+      font-size: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 18px 25px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 180px 30px 50px;
+      }
+
+      .hero-text h1 {
+        font-size: 4rem;
+      }
+
+      .hero-text h2 {
+        font-size: 2rem;
+      }
+
+      .hero-text p {
+        font-size: 1.3rem;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .bot-card {
+        width: 320px;
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+
+  <header>
+    <div class="logo">CoreBot</div>
+
+    <nav>
+      <a href="#">🏠 Início</a>
+      <a href="#">🤖 Comandos</a>
+      <a href="#">💎 Premium</a>
+      <a href="#">📚 Wiki</a>
+      <a href="#">👥 Equipe</a>
+      <a href="#">🎨 Fan Arts</a>
+      <a href="#">🛒 Loja</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="character">
+      <div class="bot-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="CoreBot" style="width: 85%; height: auto; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.3));">
+      </div>
+    </div>
+
+    <div class="hero-text">
+      <h2>Olá, eu sou o</h2>
+      <h1>CoreBot</h1>
+      <p>O bot perfeito para deixar o seu servidor Discord incrível.</p>
+
+      <div class="buttons">
+        <a href="#" class="btn btn-primary">➕ Me Adicione</a>
+        <a href="#" class="btn btn-secondary">⭐ Saiba Mais</a>
+        <a href="#" class="btn btn-panel">⚙️ Painel de Controle</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <h3>🎵 Música</h3>
+      <p>Toque músicas de alta qualidade diretamente no seu servidor com comandos simples e rápidos.</p>
+    </div>
+
+    <div class="feature">
+      <h3>🛡️ Moderação</h3>
+      <p>Mantenha o seu servidor seguro com sistemas automáticos de moderação e proteção.</p>
+    </div>
+
+    <div class="feature">
+      <h3>🎉 Diversão</h3>
+      <p>Memes, jogos, economia e muitos comandos divertidos para animar a comunidade.</p>
+    </div>
+
+    <div class="feature">
+      <h3>⚡ Performance</h3>
+      <p>Hospedagem rápida e estável para garantir que o CoreBot fique online 24 horas por dia.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 CoreBot - Todos os direitos reservados.
+  </footer>
+</body>
+</html>
