@@ -595,20 +595,109 @@
 </footer>
 
 <script>
+  const consoleBox = document.querySelector('textarea');
+  const statusInput = document.querySelector('input\[readonly\]');
+  const fileInput = document.querySelector('input[type="file"]');
+  const botNameInput = document.querySelector('input[value="Meu Bot Discord"]');
+
+  let botOnline = true;
+
+  function addConsoleLog(message) {
+    const time = new Date().toLocaleTimeString();
+    consoleBox.value += `
+[${time}] ${message}`;
+    consoleBox.scrollTop = consoleBox.scrollHeight;
+  }
+
+  function updateStatus() {
+    statusInput.value = botOnline ? '🟢 Online' : '🔴 Offline';
+  }
+
   function startBot() {
-    alert('Bot ligado com sucesso!');
+    if(botOnline) {
+      addConsoleLog('Bot já está online.');
+      return;
+    }
+
+    botOnline = true;
+    updateStatus();
+    addConsoleLog('Iniciando bot...');
+
+    setTimeout(() => {
+      addConsoleLog('Conectado à API do Discord.');
+      addConsoleLog('Bot online com sucesso!');
+    }, 1000);
   }
 
   function stopBot() {
-    alert('Bot desligado!');
+    if(!botOnline) {
+      addConsoleLog('Bot já está offline.');
+      return;
+    }
+
+    botOnline = false;
+    updateStatus();
+    addConsoleLog('Desligando bot...');
+
+    setTimeout(() => {
+      addConsoleLog('Bot desligado com sucesso.');
+    }, 800);
   }
 
   function restartBot() {
-    alert('Bot reiniciado com sucesso!');
+    addConsoleLog('Reiniciando bot...');
+    botOnline = false;
+    updateStatus();
+
+    setTimeout(() => {
+      botOnline = true;
+      updateStatus();
+      addConsoleLog('Bot reiniciado e online novamente.');
+    }, 2000);
   }
 
   function saveConfig() {
+    const config = {
+      botName: botNameInput.value,
+      status: botOnline,
+      uploadedFiles: uploadedFiles
+    };
+
+    localStorage.setItem('botConfig', JSON.stringify(config));
+    addConsoleLog('Configurações salvas localmente.');
     alert('Configuração salva com sucesso!');
+  }
+
+  let uploadedFiles = [];
+
+  fileInput.addEventListener('change', (e) => {
+    uploadedFiles = [];
+
+    for(let file of e.target.files) {
+      uploadedFiles.push(file.name);
+      addConsoleLog(`Arquivo enviado: ${file.name}`);
+    }
+
+    localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
+  });
+
+  function loadSavedData() {
+    const saved = JSON.parse(localStorage.getItem('botConfig'));
+
+    if(saved) {
+      botNameInput.value = saved.botName || 'Meu Bot Discord';
+      botOnline = saved.status;
+      updateStatus();
+      addConsoleLog('Configurações carregadas do navegador.');
+    }
+
+    const files = JSON.parse(localStorage.getItem('uploadedFiles'));
+
+    if(files && files.length > 0) {
+      files.forEach(file => {
+        addConsoleLog(`Arquivo detectado: ${file}`);
+      });
+    }
   }
 
   document.querySelectorAll('.sidebar ul li').forEach(item => {
@@ -617,6 +706,9 @@
       item.classList.add('active');
     });
   });
+
+  updateStatus();
+  loadSavedData();
 </script>
 
 </body>
