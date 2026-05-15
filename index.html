@@ -523,7 +523,39 @@
       </div>
 
       <div class="config-box">
-        <h3>Configuração do Bot</h3>
+        <h3>Controle do Bot</h3>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-bottom:30px;">
+          <button class="save-btn" onclick="startBot()">🟢 Ligar Bot</button>
+          <button class="save-btn" onclick="stopBot()" style="background:#dc2626;">🔴 Desligar Bot</button>
+          <button class="save-btn" onclick="restartBot()" style="background:#f59e0b;">♻ Reiniciar Bot</button>
+        </div>
+
+        <div class="form-group">
+          <label>Enviar Arquivos do Bot</label>
+          <input type="file" multiple>
+        </div>
+
+        <div class="form-group">
+          <label>Arquivo Principal</label>
+          <input type="text" placeholder="index.js ou main.py">
+        </div>
+
+        <div class="form-group">
+          <label>Status do Bot</label>
+          <input type="text" value="🟢 Online" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Console do Bot</label>
+          <textarea style="width:100%;height:180px;background:#0f172a;border:none;border-radius:12px;padding:15px;color:#22c55e;resize:none;" readonly>
+[INFO] Bot iniciado com sucesso...
+[INFO] Conectado ao Discord API...
+[INFO] Sistema online.
+          </textarea>
+        </div>
+
+        <h3 style="margin-top:40px;">Configuração do Bot</h3>
 
         <div class="form-group">
           <label>Nome do Bot</label>
@@ -563,6 +595,18 @@
 </footer>
 
 <script>
+  function startBot() {
+    alert('Bot ligado com sucesso!');
+  }
+
+  function stopBot() {
+    alert('Bot desligado!');
+  }
+
+  function restartBot() {
+    alert('Bot reiniciado com sucesso!');
+  }
+
   function saveConfig() {
     alert('Configuração salva com sucesso!');
   }
