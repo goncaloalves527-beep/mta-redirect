@@ -3,70 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CoreBot</title>
-  
+  <title>NovaHost Bots - Hospedagem de Bots Discord</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #1da1ff;
-      overflow-x: hidden;
+      background: #0f172a;
       color: white;
-    }
-
-    .background {
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 2px, transparent 3px),
-        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.08) 2px, transparent 3px),
-        radial-gradient(circle at 60% 70%, rgba(255,255,255,0.08) 2px, transparent 3px),
-        linear-gradient(135deg, #1ea2ff, #1585d8);
-      background-size: 120px 120px, 180px 180px, 150px 150px, cover;
-      z-index: -1;
+      overflow-x: hidden;
     }
 
     header {
-      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      padding: 20px 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 50px;
       position: fixed;
+      width: 100%;
       top: 0;
-      left: 0;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
     }
 
     .logo {
-      font-size: 2rem;
+      font-size: 28px;
       font-weight: 700;
-      color: white;
-    }
-
-    nav {
-      display: flex;
-      gap: 25px;
-      align-items: center;
+      color: #5865F2;
     }
 
     nav a {
-      text-decoration: none;
       color: white;
-      font-weight: 600;
+      text-decoration: none;
+      margin-left: 25px;
       transition: 0.3s;
+      font-weight: 500;
     }
 
     nav a:hover {
-      color: #d4efff;
-      transform: translateY(-2px);
+      color: #5865F2;
     }
 
     .hero {
@@ -74,313 +56,524 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 120px 80px 50px;
+      padding: 150px 80px 80px;
       gap: 50px;
-    }
-
-    .character {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .bot-card {
-      width: 420px;
-      height: 420px;
-      border-radius: 50px;
-      background: rgba(255,255,255,0.12);
-      border: 4px solid rgba(255,255,255,0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .bot-card::before {
-      content: '';
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      top: -60px;
-      right: -60px;
-    }
-
-    .bot-face {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 40px;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    .eyes {
-      display: flex;
-      gap: 40px;
-      margin-bottom: 20px;
-    }
-
-    .eye {
-      width: 24px;
-      height: 24px;
-      background: #1da1ff;
-      border-radius: 50%;
-    }
-
-    .mouth {
-      width: 60px;
-      height: 12px;
-      border-radius: 20px;
-      background: #1da1ff;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
     }
 
     .hero-text {
-      flex: 1;
-    }
-
-    .hero-text h2 {
-      font-size: 3rem;
-      font-family: Arial, sans-serif;
-      margin-bottom: 10px;
+      max-width: 600px;
     }
 
     .hero-text h1 {
-      font-size: 6rem;
-      color: #80d9ff;
-      line-height: 1;
+      font-size: 60px;
       margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .hero-text span {
+      color: #5865F2;
     }
 
     .hero-text p {
-      font-size: 1.8rem;
-      margin-bottom: 35px;
-      color: #eef9ff;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      font-size: 18px;
+      color: #cbd5e1;
+      margin-bottom: 30px;
+      line-height: 1.7;
     }
 
     .btn {
-      padding: 16px 30px;
-      border-radius: 15px;
-      text-decoration: none;
+      display: inline-block;
+      padding: 15px 35px;
+      background: #5865F2;
+      border-radius: 12px;
       color: white;
-      font-size: 1.1rem;
-      font-weight: 700;
+      text-decoration: none;
+      font-weight: 600;
       transition: 0.3s;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
     .btn:hover {
-      transform: translateY(-5px) scale(1.03);
+      background: #4752c4;
+      transform: translateY(-3px);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #ff3ca5, #ff0080);
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 40px;
+      border-radius: 24px;
+      width: 400px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
 
-    .btn-secondary {
-      background: linear-gradient(135deg, #3cff8e, #00c85f);
+    .hero-card h3 {
+      margin-bottom: 20px;
+      color: #5865F2;
     }
 
-    .btn-panel {
-      background: linear-gradient(135deg, #9f4dff, #6b00ff);
-    }
-
-    .features {
-      padding: 100px 80px;
+    .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
 
-    .feature {
-      background: rgba(255,255,255,0.12);
-      padding: 30px;
-      border-radius: 25px;
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255,255,255,0.15);
-      transition: 0.3s;
+    .stat {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
     }
 
-    .feature:hover {
-      transform: translateY(-8px);
+    .stat h2 {
+      color: #5865F2;
+      font-size: 32px;
     }
 
-    .feature h3 {
-      font-size: 1.6rem;
+    .section {
+      padding: 100px 80px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
       margin-bottom: 15px;
     }
 
-    .feature p {
-      color: #e8f7ff;
-      line-height: 1.6;
+    .section-title p {
+      color: #94a3b8;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #5865F2;
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #5865F2;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .plan {
+      background: #1e293b;
+      padding: 40px;
+      border-radius: 24px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
+
+    .plan:hover {
+      border-color: #5865F2;
+      transform: scale(1.03);
+    }
+
+    .plan h3 {
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .price {
+      font-size: 48px;
+      margin: 20px 0;
+      color: #5865F2;
+      font-weight: 700;
+    }
+
+    .plan ul {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .plan ul li {
+      margin: 12px 0;
+      color: #cbd5e1;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+      background: #020617;
+    }
+
+    .sidebar {
+      background: #0f172a;
+      padding: 30px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar h2 {
+      margin-bottom: 40px;
+      color: #5865F2;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .sidebar ul li:hover,
+    .sidebar ul li.active {
+      background: #5865F2;
+    }
+
+    .dashboard-content {
+      padding: 40px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .dash-card {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .dash-card h4 {
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+
+    .dash-card h2 {
+      color: #5865F2;
+      font-size: 38px;
+    }
+
+    .config-box {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .config-box h3 {
+      margin-bottom: 25px;
+      color: #5865F2;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      background: #334155;
+      color: white;
+    }
+
+    .save-btn {
+      background: #5865F2;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .save-btn:hover {
+      background: #4752c4;
     }
 
     footer {
+      padding: 40px;
       text-align: center;
-      padding: 30px;
-      background: rgba(0,0,0,0.15);
-      font-size: 1rem;
+      background: #020617;
+      color: #94a3b8;
     }
 
-    @media (max-width: 900px) {
+    @media(max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
       header {
-        padding: 18px 25px;
         flex-direction: column;
         gap: 15px;
       }
 
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 180px 30px 50px;
-      }
-
-      .hero-text h1 {
-        font-size: 4rem;
-      }
-
-      .hero-text h2 {
-        font-size: 2rem;
-      }
-
-      .hero-text p {
-        font-size: 1.3rem;
-      }
-
-      .buttons {
-        justify-content: center;
-      }
-
-      .bot-card {
-        width: 320px;
-        height: 320px;
+      nav a {
+        margin: 0 10px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="background"></div>
 
-  <header>
-    <div class="logo">CoreBot</div>
+<header>
+  <div class="logo">NovaHost Bots</div>
+  <nav>
+    <a href="#home">Início</a>
+    <a href="#features">Recursos</a>
+    <a href="#plans">Planos</a>
+    <a href="#dashboard">Dashboard</a>
+  </nav>
+</header>
 
-    <nav>
-      <a href="#">🏠 Início</a>
-      <a href="#">🤖 Comandos</a>
-      <a href="#">💎 Premium</a>
-      <a href="#">📚 Wiki</a>
-      <a href="#">👥 Equipe</a>
-      <a href="#">🎨 Fan Arts</a>
-      <a href="#">🛒 Loja</a>
-    </nav>
-  </header>
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h1>Hospedagem de <span>Bots Discord</span> Ultra Rápida</h1>
+    <p>
+      Hospede bots Discord 24/7 com uptime garantido, painel completo, monitoramento em tempo real e suporte profissional.
+    </p>
+    <a href="#plans" class="btn">Começar Agora</a>
+  </div>
 
-  <section class="hero">
-    <div class="hero-text" style="max-width: 900px; margin: 0 auto; text-align: center;">
-      <h2>Olá, eu sou o</h2>
-      <h1>CoreBot</h1>
-      <p>O bot perfeito para deixar o seu servidor Discord incrível.</p>
+  <div class="hero-card">
+    <h3>Status do Sistema</h3>
+    <div class="stats">
+      <div class="stat">
+        <h2>99.9%</h2>
+        <p>Uptime</p>
+      </div>
 
-      <div class="buttons">
-        <a href="https://discord.com/oauth2/authorize?client_id=1500189077818052662&permissions=8&scope=bot" target="_blank" class="btn btn-primary">➕ Me Adicione</a>
-        <a href="#" class="btn btn-secondary">⭐ Saiba Mais</a>
-        <a href="#dashboard" class="btn btn-panel">⚙️ Painel de Controle</a>
+      <div class="stat">
+        <h2>2ms</h2>
+        <p>Ping</p>
+      </div>
+
+      <div class="stat">
+        <h2>24/7</h2>
+        <p>Suporte</p>
+      </div>
+
+      <div class="stat">
+        <h2>500+</h2>
+        <p>Bots Online</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  
+<section class="section" id="features">
+  <div class="section-title">
+    <h2>Recursos Premium</h2>
+    <p>Tudo que você precisa para hospedar seu bot Discord.</p>
+  </div>
 
-  <section id="dashboard" style="padding: 100px 40px; background: #f5f7fb; color: #222; min-height: 100vh;">
-    <div style="display:flex; gap:30px; flex-wrap:wrap;">
-      
-      <aside style="width:320px; background:white; border-radius:25px; padding:25px; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
-        <h2 style="font-size:2.5rem; color:#1da1ff; margin-bottom:30px;">CoreBot</h2>
-
-        <div style="display:flex; flex-direction:column; gap:15px;">
-          <a href="#" style="padding:15px; border-radius:15px; background:#1da1ff; color:white; text-decoration:none; font-weight:700;">🏠 Seus Servidores</a>
-          <a href="#" style="padding:15px; border-radius:15px; background:#eef6ff; color:#333; text-decoration:none; font-weight:600;">💎 Premium</a>
-          <a href="#" style="padding:15px; border-radius:15px; background:#eef6ff; color:#333; text-decoration:none; font-weight:600;">🛒 Loja</a>
-          <a href="#" style="padding:15px; border-radius:15px; background:#eef6ff; color:#333; text-decoration:none; font-weight:600;">⚙️ Configurações</a>
-          <a href="#" style="padding:15px; border-radius:15px; background:#eef6ff; color:#333; text-decoration:none; font-weight:600;">📚 API</a>
-        </div>
-      </aside>
-
-      <main style="flex:1; background:white; border-radius:25px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
-        <h1 style="font-size:3rem; color:#1da1ff; margin-bottom:10px;">Escolha um Servidor</h1>
-        <p style="margin-bottom:40px; color:#666; font-size:1.1rem;">Gerencie todos os servidores conectados ao CoreBot.</p>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:25px;">
-          
-          <div style="border:2px solid #edf2f7; border-radius:20px; padding:20px; display:flex; align-items:center; justify-content:space-between; gap:15px;">
-            <div style="display:flex; align-items:center; gap:15px;">
-              <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" style="width:60px; height:60px; border-radius:15px;">
-              <div>
-                <h3>Apartamento CoreBot</h3>
-                <span style="color:#666;">Dono</span>
-              </div>
-            </div>
-            <button style="background:#1da1ff; color:white; border:none; padding:14px 22px; border-radius:12px; font-weight:700; cursor:pointer;">Configurar</button>
-          </div>
-
-          <div style="border:2px solid #edf2f7; border-radius:20px; padding:20px; display:flex; align-items:center; justify-content:space-between; gap:15px;">
-            <div style="display:flex; align-items:center; gap:15px;">
-              <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" style="width:60px; height:60px; border-radius:15px;">
-              <div>
-                <h3>Bombeiros RP</h3>
-                <span style="color:#666;">Administrador</span>
-              </div>
-            </div>
-            <button style="background:#1da1ff; color:white; border:none; padding:14px 22px; border-radius:12px; font-weight:700; cursor:pointer;">Configurar</button>
-          </div>
-
-          <div style="border:2px solid #edf2f7; border-radius:20px; padding:20px; display:flex; align-items:center; justify-content:space-between; gap:15px;">
-            <div style="display:flex; align-items:center; gap:15px;">
-              <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" style="width:60px; height:60px; border-radius:15px;">
-              <div>
-                <h3>Lisboa RP</h3>
-                <span style="color:#666;">Gerenciador</span>
-              </div>
-            </div>
-            <button style="background:#1da1ff; color:white; border:none; padding:14px 22px; border-radius:12px; font-weight:700; cursor:pointer;">Configurar</button>
-          </div>
-
-          <div style="border:2px solid #edf2f7; border-radius:20px; padding:20px; display:flex; align-items:center; justify-content:space-between; gap:15px;">
-            <div style="display:flex; align-items:center; gap:15px;">
-              <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" style="width:60px; height:60px; border-radius:15px;">
-              <div>
-                <h3>NexoRP</h3>
-                <span style="color:#666;">Dono</span>
-              </div>
-            </div>
-            <button style="background:#1da1ff; color:white; border:none; padding:14px 22px; border-radius:12px; font-weight:700; cursor:pointer;">Configurar</button>
-          </div>
-
-        </div>
-      </main>
+  <div class="cards">
+    <div class="card">
+      <h3>⚡ Alta Performance</h3>
+      <p>Servidores SSD NVMe com baixa latência e alta velocidade.</p>
     </div>
-  </section>
 
-  <footer>
-    © 2025 CoreBot - Todos os direitos reservados.
-  </footer>
+    <div class="card">
+      <h3>🛡 Segurança</h3>
+      <p>Proteção DDoS avançada e backups automáticos.</p>
+    </div>
+
+    <div class="card">
+      <h3>📊 Dashboard</h3>
+      <p>Controle total do bot com painel moderno e intuitivo.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔔 Monitoramento</h3>
+      <p>Receba alertas e acompanhe logs em tempo real.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="plans">
+  <div class="section-title">
+    <h2>Planos</h2>
+    <p>Escolha o plano ideal para o seu bot.</p>
+  </div>
+
+  <div class="pricing">
+    <div class="plan">
+      <h3>Starter</h3>
+      <div class="price">R$15</div>
+      <ul>
+        <li>1 Bot</li>
+        <li>1GB RAM</li>
+        <li>SSD NVMe</li>
+        <li>Suporte Básico</li>
+      </ul>
+      <a href="#" class="btn">Assinar</a>
+    </div>
+
+    <div class="plan">
+      <h3>Pro</h3>
+      <div class="price">R$39</div>
+      <ul>
+        <li>5 Bots</li>
+        <li>4GB RAM</li>
+        <li>CPU Premium</li>
+        <li>Suporte Prioritário</li>
+      </ul>
+      <a href="#" class="btn">Assinar</a>
+    </div>
+
+    <div class="plan">
+      <h3>Ultra</h3>
+      <div class="price">R$79</div>
+      <ul>
+        <li>Bots Ilimitados</li>
+        <li>8GB RAM</li>
+        <li>Máxima Performance</li>
+        <li>Suporte VIP</li>
+      </ul>
+      <a href="#" class="btn">Assinar</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="dashboard">
+  <div class="section-title">
+    <h2>Dashboard</h2>
+    <p>Painel administrativo completo para controle do seu bot.</p>
+  </div>
+
+  <div class="dashboard">
+    <div class="sidebar">
+      <h2>Painel</h2>
+      <ul>
+        <li class="active">🏠 Início</li>
+        <li>🤖 Bots</li>
+        <li>⚙ Configurações</li>
+        <li>📈 Estatísticas</li>
+        <li>🛡 Segurança</li>
+        <li>💳 Pagamentos</li>
+      </ul>
+    </div>
+
+    <div class="dashboard-content">
+      <div class="dashboard-grid">
+        <div class="dash-card">
+          <h4>Bots Ativos</h4>
+          <h2>12</h2>
+        </div>
+
+        <div class="dash-card">
+          <h4>CPU</h4>
+          <h2>43%</h2>
+        </div>
+
+        <div class="dash-card">
+          <h4>RAM</h4>
+          <h2>6.2GB</h2>
+        </div>
+
+        <div class="dash-card">
+          <h4>Uptime</h4>
+          <h2>99.9%</h2>
+        </div>
+      </div>
+
+      <div class="config-box">
+        <h3>Configuração do Bot</h3>
+
+        <div class="form-group">
+          <label>Nome do Bot</label>
+          <input type="text" value="Meu Bot Discord">
+        </div>
+
+        <div class="form-group">
+          <label>Token do Bot</label>
+          <input type="password" value="123456789abcdef">
+        </div>
+
+        <div class="form-group">
+          <label>Linguagem</label>
+          <select>
+            <option>Node.js</option>
+            <option>Python</option>
+            <option>Java</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Auto Restart</label>
+          <select>
+            <option>Ativado</option>
+            <option>Desativado</option>
+          </select>
+        </div>
+
+        <button class="save-btn" onclick="saveConfig()">Salvar Configuração</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 NovaHost Bots - Todos os direitos reservados.
+</footer>
+
+<script>
+  function saveConfig() {
+    alert('Configuração salva com sucesso!');
+  }
+
+  document.querySelectorAll('.sidebar ul li').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.sidebar ul li').forEach(li => li.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+</script>
+
 </body>
 </html>
