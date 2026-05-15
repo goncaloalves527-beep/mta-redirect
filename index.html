@@ -485,10 +485,43 @@ logs.innerHTML += `\n[${time}] ${text}`;
 logs.scrollTop = logs.scrollHeight;
 }
 
-function startBot(){
+async function startBot(){
 if(botOnline){
 addLog('Bot já está online.');
 return;
+}
+
+const token = document.getElementById('token').value;
+const mainFile = document.getElementById('mainFile').value;
+
+if(token === '' || mainFile === ''){
+alert('Preencha o token e arquivo principal!');
+return;
+}
+
+addLog('Enviando comando para iniciar bot...');
+
+try{
+const response = await fetch('/api/start',{
+method:'POST',
+headers:{
+'Content-Type':'application/json'
+},
+body:JSON.stringify({token,mainFile})
+});
+
+const data = await response.json();
+
+if(data.success){
+botOnline = true;
+statusText.innerText = 'Online';
+addLog('Bot online com sucesso!');
+}else{
+addLog('Erro ao ligar bot.');
+}
+}catch(err){
+addLog('Servidor backend offline.');
+}
 }
 
 const token = document.getElementById('token').value;
@@ -513,10 +546,29 @@ addLog('Bot online com sucesso!');
 },2000);
 }
 
-function stopBot(){
+async function stopBot(){
 if(!botOnline){
 addLog('Bot já está offline.');
 return;
+}
+
+addLog('Enviando comando para desligar bot...');
+
+try{
+const response = await fetch('/api/stop',{
+method:'POST'
+});
+
+const data = await response.json();
+
+if(data.success){
+botOnline = false;
+statusText.innerText = 'Offline';
+addLog('Bot desligado com sucesso.');
+}
+}catch(err){
+addLog('Servidor backend offline.');
+}
 }
 
 botOnline = false;
@@ -524,13 +576,26 @@ statusText.innerText = 'Offline';
 addLog('Bot desligado.');
 }
 
-function restartBot(){
-addLog('Reiniciando bot...');
+async function restartBot(){
+addLog('Enviando reinicialização...');
 statusText.innerText = 'Reiniciando';
 
+try{
+const response = await fetch('/api/restart',{
+method:'POST'
+});
+
+const data = await response.json();
+
+if(data.success){
 setTimeout(()=>{
 statusText.innerText = 'Online';
 addLog('Bot reiniciado com sucesso.');
+},2000);
+}
+}catch(err){
+addLog('Servidor backend offline.');
+}
 },2000);
 }
 
@@ -568,6 +633,30 @@ miniConsole.scrollTop = miniConsole.scrollHeight;
 },4000);
 
 loadData();
+
+// Upload de arquivos
+const botFiles = document.getElementById('botFiles');
+
+botFiles.addEventListener('change', async (e)=>{
+const files = e.target.files;
+const formData = new FormData();
+
+for(let file of files){
+formData.append('files',file);
+addLog('Arquivo selecionado: '+file.name);
+}
+
+try{
+await fetch('/api/upload',{
+method:'POST',
+body:formData
+});
+
+addLog('Arquivos enviados para o servidor.');
+}catch(err){
+addLog('Erro ao enviar arquivos.');
+}
+});
 </script>
 
 </body>
