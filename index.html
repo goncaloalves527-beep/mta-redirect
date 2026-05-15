@@ -659,5 +659,112 @@ addLog('Erro ao enviar arquivos.');
 });
 </script>
 
+<div style="padding:60px;background:#000;color:#22c55e;font-family:monospace;white-space:pre-line;">
+<h2 style="color:#5865F2;margin-bottom:20px;">Backend Node.js (server.js)</h2>
+<pre>
+const express = require('express');
+const cors = require('cors');
+const multer = require('multer');
+const { spawn } = require('child_process');
+const path = require('path');
+const fs = require('fs');
+
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static(__dirname));
+
+const upload = multer({ dest: 'uploads/' });
+
+let botProcess = null;
+
+app.post('/api/upload', upload.array('files'), (req,res)=>{
+  res.json({ success:true });
+});
+
+app.post('/api/start', (req,res)=>{
+  const { token, mainFile } = req.body;
+
+  if(botProcess){
+    return res.json({ success:false, message:'Bot já online' });
+  }
+
+  process.env.DISCORD_TOKEN = token;
+
+  botProcess = spawn('node',[mainFile],{
+    shell:true,
+    stdio:'inherit'
+  });
+
+  botProcess.on('close',()=>{
+    botProcess = null;
+  });
+
+  res.json({ success:true });
+});
+
+app.post('/api/stop',(req,res)=>{
+  if(botProcess){
+    botProcess.kill();
+    botProcess = null;
+  }
+
+  res.json({ success:true });
+});
+
+app.post('/api/restart',(req,res)=>{
+  if(botProcess){
+    botProcess.kill();
+  }
+
+  res.json({ success:true });
+});
+
+app.listen(PORT,()=>{
+  console.log('NovaHost online na porta '+PORT);
+});
+</pre>
+
+<h2 style="color:#5865F2;margin:40px 0 20px;">Bot Discord (bot.js)</h2>
+<pre>
+const { Client, GatewayIntentBits } = require('discord.js');
+
+const client = new Client({
+ intents:[GatewayIntentBits.Guilds]
+});
+
+client.once('ready',()=>{
+ console.log('Bot online: '+client.user.tag);
+});
+
+client.login(process.env.DISCORD_TOKEN);
+</pre>
+
+<h2 style="color:#5865F2;margin:40px 0 20px;">package.json</h2>
+<pre>
+{
+ "name":"novahost",
+ "version":"1.0.0",
+ "main":"server.js",
+ "scripts":{
+  "start":"node server.js"
+ },
+ "dependencies":{
+  "cors":"^2.8.5",
+  "discord.js":"^14.15.3",
+  "express":"^4.19.2",
+  "multer":"^1.4.5-lts.1"
+ }
+}
+</pre>
+
+<h2 style="color:#5865F2;margin:40px 0 20px;">Comandos</h2>
+<pre>
+npm install
+node server.js
+</pre>
+</div>
 </body>
 </html>
