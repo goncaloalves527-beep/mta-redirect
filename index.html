@@ -3,412 +3,517 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Corebot</title>
+  <title>CoreBot • Sistema Inteligente</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #050816;
-      color: white;
-      overflow-x: hidden;
+    body{
+      font-family:'Inter',sans-serif;
+      background:#040816;
+      color:white;
+      overflow-x:hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%);
-      top: -250px;
-      right: -150px;
-      z-index: -1;
+    body::before{
+      content:'';
+      position:fixed;
+      width:700px;
+      height:700px;
+      background:radial-gradient(circle,rgba(0,217,255,.18),transparent 70%);
+      top:-300px;
+      right:-200px;
+      z-index:-1;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(168,85,247,0.18), transparent 70%);
-      bottom: -250px;
-      left: -150px;
-      z-index: -1;
+    body::after{
+      content:'';
+      position:fixed;
+      width:700px;
+      height:700px;
+      background:radial-gradient(circle,rgba(130,69,236,.15),transparent 70%);
+      bottom:-350px;
+      left:-250px;
+      z-index:-1;
     }
 
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 22px 8%;
-      backdrop-filter: blur(18px);
-      background: rgba(5, 8, 22, 0.55);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      z-index: 1000;
+    header{
+      position:fixed;
+      width:100%;
+      top:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:24px 8%;
+      background:rgba(4,8,22,.55);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,.05);
+      z-index:999;
     }
 
-    .logo {
-      font-size: 30px;
-      font-weight: 800;
-      background: linear-gradient(90deg, #60a5fa, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
+    .logo{
+      font-size:32px;
+      font-weight:800;
+      background:linear-gradient(90deg,#00d9ff,#8b5cf6);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      letter-spacing:1px;
     }
 
-    nav {
-      display: flex;
-      gap: 28px;
+    nav{
+      display:flex;
+      gap:32px;
     }
 
-    nav a {
-      color: #dbe4ff;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-      transition: 0.3s ease;
-      position: relative;
+    nav a{
+      color:#dbe4ff;
+      text-decoration:none;
+      font-size:15px;
+      position:relative;
+      transition:.3s;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      background: #60a5fa;
-      left: 0;
-      bottom: -5px;
-      transition: 0.3s;
+    nav a::after{
+      content:'';
+      position:absolute;
+      width:0%;
+      height:2px;
+      background:#00d9ff;
+      left:0;
+      bottom:-6px;
+      transition:.3s;
     }
 
-    nav a:hover::after {
-      width: 100%;
+    nav a:hover::after{
+      width:100%;
     }
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 140px 20px 80px;
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:140px 20px 80px;
+      position:relative;
     }
 
-    .hero-content {
-      max-width: 900px;
-      animation: fadeUp 1s ease;
+    .hero-content{
+      max-width:1000px;
+      animation:fadeUp 1s ease;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 10px 18px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 999px;
-      margin-bottom: 25px;
-      color: #9fb4ff;
-      background: rgba(255,255,255,0.03);
-      font-size: 14px;
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 20px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      margin-bottom:30px;
+      color:#9fb4ff;
+      font-size:14px;
     }
 
-    .hero h1 {
-      font-size: 78px;
-      line-height: 1.05;
-      margin-bottom: 25px;
-      font-weight: 800;
+    .hero h1{
+      font-size:85px;
+      line-height:1;
+      margin-bottom:28px;
+      font-weight:800;
     }
 
-    .hero h1 span {
-      background: linear-gradient(90deg, #60a5fa, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero h1 span{
+      background:linear-gradient(90deg,#00d9ff,#8b5cf6);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 
-    .hero p {
-      font-size: 19px;
-      color: #b8c2e0;
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.8;
-      margin-bottom: 40px;
+    .hero p{
+      color:#b6c1df;
+      font-size:20px;
+      line-height:1.8;
+      max-width:760px;
+      margin:auto;
+      margin-bottom:45px;
     }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
     }
 
-    .btn {
-      padding: 15px 34px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.35s ease;
-      font-size: 15px;
+    .btn{
+      padding:16px 34px;
+      border-radius:16px;
+      text-decoration:none;
+      font-weight:600;
+      transition:.35s;
+      font-size:15px;
     }
 
-    .btn-primary {
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      color: white;
-      box-shadow: 0 10px 30px rgba(59,130,246,0.3);
+    .btn-primary{
+      background:linear-gradient(90deg,#00d9ff,#8b5cf6);
+      color:white;
+      box-shadow:0 12px 30px rgba(0,217,255,.25);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-4px) scale(1.02);
+    .btn-primary:hover{
+      transform:translateY(-5px);
     }
 
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.12);
-      color: #dbe4ff;
-      background: rgba(255,255,255,0.03);
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      color:#dbe4ff;
     }
 
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.06);
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.06);
     }
 
-    .features {
-      padding: 120px 8%;
+    .stats{
+      padding:0 8% 120px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
     }
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 70px;
+    .stat{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.05);
+      padding:40px;
+      border-radius:24px;
+      text-align:center;
+      backdrop-filter:blur(10px);
+      transition:.3s;
     }
 
-    .section-title h2 {
-      font-size: 48px;
-      margin-bottom: 15px;
+    .stat:hover{
+      transform:translateY(-8px);
+      border-color:rgba(0,217,255,.35);
     }
 
-    .section-title p {
-      color: #94a3b8;
-      font-size: 17px;
+    .stat h2{
+      font-size:48px;
+      color:#00d9ff;
+      margin-bottom:10px;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 28px;
+    .stat p{
+      color:#94a3b8;
     }
 
-    .card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 24px;
-      padding: 35px;
-      transition: 0.4s ease;
-      backdrop-filter: blur(14px);
-      position: relative;
-      overflow: hidden;
+    .features{
+      padding:120px 8%;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      background: rgba(96,165,250,0.15);
-      border-radius: 50%;
-      top: -50px;
-      right: -50px;
+    .section-title{
+      text-align:center;
+      margin-bottom:80px;
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(96,165,250,0.4);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    .section-title h2{
+      font-size:54px;
+      margin-bottom:15px;
     }
 
-    .icon {
-      font-size: 40px;
-      margin-bottom: 20px;
+    .section-title p{
+      color:#94a3b8;
+      font-size:18px;
     }
 
-    .card h3 {
-      margin-bottom: 14px;
-      font-size: 24px;
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
     }
 
-    .card p {
-      color: #b8c2e0;
-      line-height: 1.7;
-      font-size: 15px;
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      padding:40px;
+      border-radius:28px;
+      position:relative;
+      overflow:hidden;
+      transition:.4s;
+      backdrop-filter:blur(16px);
     }
 
-    .stats {
-      padding: 40px 8% 120px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
+    .card::before{
+      content:'';
+      position:absolute;
+      width:160px;
+      height:160px;
+      background:rgba(0,217,255,.12);
+      border-radius:50%;
+      top:-70px;
+      right:-70px;
     }
 
-    .stat-box {
-      text-align: center;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: 40px;
-      border-radius: 22px;
+    .card:hover{
+      transform:translateY(-10px);
+      border-color:rgba(0,217,255,.3);
+      box-shadow:0 25px 50px rgba(0,0,0,.35);
     }
 
-    .stat-box h3 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      color: #60a5fa;
+    .icon{
+      font-size:42px;
+      margin-bottom:22px;
     }
 
-    .stat-box p {
-      color: #94a3b8;
+    .card h3{
+      font-size:26px;
+      margin-bottom:16px;
     }
 
-    footer {
-      padding: 35px;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      color: #7c8cb3;
-      font-size: 14px;
+    .card p{
+      color:#b6c1df;
+      line-height:1.8;
+      font-size:15px;
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
+    .commands{
+      padding:120px 8%;
+    }
+
+    .command-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:24px;
+    }
+
+    .command{
+      background:#091122;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:22px;
+      padding:28px;
+      transition:.3s;
+    }
+
+    .command:hover{
+      border-color:#00d9ff;
+      transform:translateY(-6px);
+    }
+
+    .command code{
+      color:#00d9ff;
+      font-size:18px;
+      font-weight:700;
+      display:block;
+      margin-bottom:12px;
+    }
+
+    .command p{
+      color:#9aa7c7;
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    footer{
+      padding:40px;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,.05);
+      color:#7f8db3;
+      font-size:14px;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      to{
+        opacity:1;
+        transform:translateY(0);
       }
     }
 
-    @media (max-width: 900px) {
-      .hero h1 {
-        font-size: 52px;
+    @media(max-width:900px){
+      .hero h1{
+        font-size:58px;
       }
     }
 
-    @media (max-width: 700px) {
-      nav {
-        display: none;
+    @media(max-width:700px){
+
+      nav{
+        display:none;
       }
 
-      .hero h1 {
-        font-size: 42px;
+      .hero h1{
+        font-size:42px;
       }
 
-      .hero p {
-        font-size: 16px;
+      .hero p{
+        font-size:16px;
       }
 
-      .section-title h2 {
-        font-size: 36px;
+      .section-title h2{
+        font-size:38px;
       }
     }
+
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">Corebot</div>
+<header>
+  <div class="logo">COREBOT</div>
 
-    <nav>
-      <a href="#inicio">Início</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#stats">Resultados</a>
-      <a href="#footer">Contacto</a>
-    </nav>
-  </header>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#features">Features</a>
+    <a href="#commands">Comandos</a>
+    <a href="#footer">Contacto</a>
+  </nav>
+</header>
 
-  <section class="hero" id="inicio">
-    <div class="hero-content">
-      <div class="tag">⚡ Plataforma Inteligente & Soluções Digitais</div>
+<section class="hero" id="inicio">
 
-      <h1>
-        O futuro começa com a <span>Corebot</span>
-      </h1>
+  <div class="hero-content">
 
+    <div class="tag">
+      ⚡ Discord Automation • Tickets • Turnos • Gestão
+    </div>
+
+    <h1>
+      O futuro da <span>automação</span><br>
+      começa aqui.
+    </h1>
+
+    <p>
+      CoreBot é uma solução moderna para servidores Discord.
+      Sistemas inteligentes, tickets profissionais, verificação,
+      controlo de turnos e muito mais numa única plataforma.
+    </p>
+
+    <div class="buttons">
+      <a href="#features" class="btn btn-primary">Explorar Sistema</a>
+      <a href="#commands" class="btn btn-secondary">Ver Comandos</a>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="stats">
+
+  <div class="stat">
+    <h2>99%</h2>
+    <p>Estabilidade</p>
+  </div>
+
+  <div class="stat">
+    <h2>24/7</h2>
+    <p>Sistema Online</p>
+  </div>
+
+  <div class="stat">
+    <h2>0ms</h2>
+    <p>Resposta Rápida</p>
+  </div>
+
+  <div class="stat">
+    <h2>∞</h2>
+    <p>Possibilidades</p>
+  </div>
+
+</section>
+
+<section class="features" id="features">
+
+  <div class="section-title">
+    <h2>Funcionalidades</h2>
+    <p>Sistemas modernos para o teu servidor Discord.</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">🎫</div>
+      <h3>Sistema de Tickets</h3>
       <p>
-        Desenvolvemos experiências digitais modernas, rápidas e inteligentes para projetos, comunidades e empresas que querem destacar-se online.
+        Criação automática de tickets privados com gestão avançada de suporte e parcerias.
       </p>
-
-      <div class="buttons">
-        <a href="#servicos" class="btn btn-primary">Começar</a>
-        <a href="#stats" class="btn btn-secondary">Ver resultados</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="features" id="servicos">
-    <div class="section-title">
-      <h2>O que fazemos</h2>
-      <p>Soluções modernas feitas para performance e qualidade.</p>
     </div>
 
-    <div class="cards">
-      <div class="card">
-        <div class="icon">🚀</div>
-        <h3>Alta Performance</h3>
-        <p>Websites rápidos, leves e totalmente otimizados para qualquer dispositivo moderno.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🤖</div>
-        <h3>Automação</h3>
-        <p>Ferramentas inteligentes para simplificar processos e aumentar produtividade.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🎨</div>
-        <h3>Design Premium</h3>
-        <p>Interfaces modernas com visual profissional e experiência fluida para utilizadores.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🔒</div>
-        <h3>Segurança</h3>
-        <p>Estrutura segura e estável preparada para projetos de qualquer dimensão.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats" id="stats">
-    <div class="stat-box">
-      <h3>99%</h3>
-      <p>Estabilidade</p>
+    <div class="card">
+      <div class="icon">✅</div>
+      <h3>Verificação</h3>
+      <p>
+        Sistema de verificação com botões automáticos e gestão instantânea de cargos.
+      </p>
     </div>
 
-    <div class="stat-box">
-      <h3>24/7</h3>
-      <p>Disponibilidade</p>
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>Bate Ponto</h3>
+      <p>
+        Registo completo de turnos, horas totais e controlo de atividade da equipa.
+      </p>
     </div>
 
-    <div class="stat-box">
-      <h3>+100</h3>
-      <p>Projetos Criativos</p>
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>Performance</h3>
+      <p>
+        Sistema otimizado com cache inteligente e resposta rápida para grandes servidores.
+      </p>
     </div>
 
-    <div class="stat-box">
-      <h3>Fast</h3>
-      <p>Velocidade Extrema</p>
-    </div>
-  </section>
+  </div>
 
-  <footer id="footer">
-    © 2026 Corebot — Desenvolvido para inovação digital.
-  </footer>
+</section>
+
+<section class="commands" id="commands">
+
+  <div class="section-title">
+    <h2>Comandos</h2>
+    <p>Principais funcionalidades disponíveis.</p>
+  </div>
+
+  <div class="command-grid">
+
+    <div class="command">
+      <code>!verify</code>
+      <p>Sistema automático de verificação com botão interativo.</p>
+    </div>
+
+    <div class="command">
+      <code>!ticket</code>
+      <p>Abre um painel de parcerias e suporte com tickets privados.</p>
+    </div>
+
+    <div class="command">
+      <code>!status</code>
+      <p>Mostra informações do bot, uptime, ping e sistema.</p>
+    </div>
+
+    <div class="command">
+      <code>!bateponto</code>
+      <p>Painel completo de turnos com horas e gestão de serviço.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<footer id="footer">
+  © 2026 COREBOT • Sistema Inteligente para Discord
+</footer>
 
 </body>
 </html>
